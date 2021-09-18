@@ -1,0 +1,52 @@
+﻿@model HotelMVC.Models.Clientes
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalle  del cliente</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Tipo Id</dt><dd>@Html.DisplayFor(model => model.CTipoIdentificacion.Descripcion)</dd>
+        <dt>Nro. Identificación</dt><dd>@Html.DisplayFor(model => model.NumeroIdentificacion)</dd>
+        <dt>Nombres</dt><dd>@Html.DisplayFor(model => model.Nombres)</dd>
+        <dt>Apellidos</dt><dd>@Html.DisplayFor(model => model.Apellidos)</dd>
+        <dt>Teléfono</dt><dd> @Html.DisplayFor(model => model.Telefono)</dd>
+
+        <dt>
+            Correo Electrónico
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Correo)
+        </dd>
+
+        <dt>
+            Estado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CEstados.Descripcion)
+        </dd>
+
+        <dt>
+            Observaciones
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button class="btn" title="Regresar" onclick="location.href='@Url.Action("Index", "Clientes")';return false;">
+        <img src="~/Images/atras.png" alt="atras" style="width:24px;" />
+    </button>
+    <button class="btn" title="Editar" onclick="location.href='@Url.Action("Edit", "Clientes", new { id = Model.NumeroIdentificacion })';return false;">
+        <img src="~/Images/editar.png" alt="editar" style="width:24px;" />
+    </button>
+
+</p>

@@ -1,0 +1,2348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ModeloHotel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="IdAdministrador" />
+          </Key>
+          <Property Name="IdAdministrador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTipoIdentificacion" Type="varchar" MaxLength="3" />
+          <Property Name="NumeroIdentificacion" Type="varchar" MaxLength="15" />
+          <Property Name="Nombres" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="User" Type="varchar" MaxLength="16" />
+          <Property Name="Password" Type="varchar" MaxLength="16" />
+          <Property Name="IdEstado" Type="smallint" />
+          <Property Name="Observaciones" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="CEstados">
+          <Key>
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdEstado" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="32" />
+          <Property Name="Categoria" Type="varchar" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="NumeroIdentificacion" />
+          </Key>
+          <Property Name="IdCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTipoIdentificacion" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="NumeroIdentificacion" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Nombres" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="255" />
+          <Property Name="Observaciones" Type="varchar(max)" />
+          <Property Name="IdEstado" Type="smallint" />
+        </EntityType>
+        <EntityType Name="CTipoHabitacion">
+          <Key>
+            <PropertyRef Name="IdTipoHabitacion" />
+          </Key>
+          <Property Name="IdTipoHabitacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CTipoIdentificacion">
+          <Key>
+            <PropertyRef Name="IdTipoIdentificacion" />
+          </Key>
+          <Property Name="IdTipoIdentificacion" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetalleEntrada">
+          <Key>
+            <PropertyRef Name="IdDetalleEntrada" />
+          </Key>
+          <Property Name="IdDetalleEntrada" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEntrada" Type="int" Nullable="false" />
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetalleOrdenPago">
+          <Key>
+            <PropertyRef Name="IdDetalleOrdenPago" />
+          </Key>
+          <Property Name="IdDetalleOrdenPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdOrdenPago" Type="int" Nullable="false" />
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entrada">
+          <Key>
+            <PropertyRef Name="IdEntrada" />
+          </Key>
+          <Property Name="IdEntrada" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+          <Property Name="NumeroIdentificacion" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IdEstado" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Habitaciones">
+          <Key>
+            <PropertyRef Name="NumeroHabitacion" />
+          </Key>
+          <Property Name="IdHabitacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumeroHabitacion" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="IdTipoHabitacion" Type="int" Nullable="false" />
+          <Property Name="Tarifa" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="NumeroPersonas" Type="int" Nullable="false" />
+          <Property Name="IdEstado" Type="smallint" Nullable="false" />
+          <Property Name="Observaciones" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="OrdenPago">
+          <Key>
+            <PropertyRef Name="IdOrdenPago" />
+          </Key>
+          <Property Name="IdOrdenPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IdEstado" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumeroIdentificacion" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="21" Nullable="false" />
+          <Property Name="Precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Costo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Existencia" Type="int" Nullable="false" />
+          <Property Name="IdEstado" Type="smallint" Nullable="false" />
+          <Property Name="Observaciones" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="NumeroIdentificacion" />
+          </Key>
+          <Property Name="IdProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="255" />
+          <Property Name="IdTipoIdentificacion" Type="varchar" MaxLength="3" />
+          <Property Name="NumeroIdentificacion" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="255" />
+          <Property Name="Telefono" Type="varchar" MaxLength="15" />
+          <Property Name="Correo" Type="varchar" MaxLength="255" />
+          <Property Name="IdEstado" Type="smallint" />
+          <Property Name="Observaciones" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Transacciones">
+          <Key>
+            <PropertyRef Name="IdTransaccion" />
+          </Key>
+          <Property Name="IdTransaccion" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumeroIdentificacion" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="NumeroHabitacion" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="FechaHoraIngreso" Type="datetime" Nullable="false" />
+          <Property Name="FechaHoraSalida" Type="datetime" Nullable="false" />
+          <Property Name="TotalDias" Type="int" Nullable="false" />
+          <Property Name="NumeroPersonas" Type="int" Nullable="false" />
+          <Property Name="IdEstado" Type="smallint" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransaccionesOrdenPago">
+          <Key>
+            <PropertyRef Name="IdTransaccionOrdenPago" />
+          </Key>
+          <Property Name="IdTransaccionOrdenPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdOrdenPago" Type="int" Nullable="false" />
+          <Property Name="IdTransaccion" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Administrador_CEstados">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="0..1" />
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Administrador">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Administrador_CTipoIdentificacion">
+          <End Role="CTipoIdentificacion" Type="Self.CTipoIdentificacion" Multiplicity="0..1" />
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CTipoIdentificacion">
+              <PropertyRef Name="IdTipoIdentificacion" />
+            </Principal>
+            <Dependent Role="Administrador">
+              <PropertyRef Name="IdTipoIdentificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clientes_CEstados">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="0..1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clientes_CTipoIdentificacion">
+          <End Role="CTipoIdentificacion" Type="Self.CTipoIdentificacion" Multiplicity="1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CTipoIdentificacion">
+              <PropertyRef Name="IdTipoIdentificacion" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="IdTipoIdentificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleEntrada_Entrada">
+          <End Role="Entrada" Type="Self.Entrada" Multiplicity="1" />
+          <End Role="DetalleEntrada" Type="Self.DetalleEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entrada">
+              <PropertyRef Name="IdEntrada" />
+            </Principal>
+            <Dependent Role="DetalleEntrada">
+              <PropertyRef Name="IdEntrada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleEntrada_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="DetalleEntrada" Type="Self.DetalleEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="DetalleEntrada">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleOrdenPago_OrdenPago">
+          <End Role="OrdenPago" Type="Self.OrdenPago" Multiplicity="1" />
+          <End Role="DetalleOrdenPago" Type="Self.DetalleOrdenPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenPago">
+              <PropertyRef Name="IdOrdenPago" />
+            </Principal>
+            <Dependent Role="DetalleOrdenPago">
+              <PropertyRef Name="IdOrdenPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleOrdenPago_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="DetalleOrdenPago" Type="Self.DetalleOrdenPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="DetalleOrdenPago">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleOrdenPago_Productos1">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="DetalleOrdenPago" Type="Self.DetalleOrdenPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="DetalleOrdenPago">
+              <PropertyRef Name="IdOrdenPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entrada_CEstados">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+          <End Role="Entrada" Type="Self.Entrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Entrada">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entrada_Proveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+          <End Role="Entrada" Type="Self.Entrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="NumeroIdentificacion" />
+            </Principal>
+            <Dependent Role="Entrada">
+              <PropertyRef Name="NumeroIdentificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Habitaciones_CEstados">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+          <End Role="Habitaciones" Type="Self.Habitaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Habitaciones">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Habitaciones_CEstados1">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+          <End Role="Habitaciones" Type="Self.Habitaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Habitaciones">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Habitaciones_CTipoHabitacion">
+          <End Role="CTipoHabitacion" Type="Self.CTipoHabitacion" Multiplicity="1" />
+          <End Role="Habitaciones" Type="Self.Habitaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CTipoHabitacion">
+              <PropertyRef Name="IdTipoHabitacion" />
+            </Principal>
+            <Dependent Role="Habitaciones">
+              <PropertyRef Name="IdTipoHabitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenPago_CEstados">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+          <End Role="OrdenPago" Type="Self.OrdenPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="OrdenPago">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_CEstados">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_Proveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="NumeroIdentificacion" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="NumeroIdentificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_CEstados">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="0..1" />
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_CTipoIdentificacion">
+          <End Role="CTipoIdentificacion" Type="Self.CTipoIdentificacion" Multiplicity="0..1" />
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CTipoIdentificacion">
+              <PropertyRef Name="IdTipoIdentificacion" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdTipoIdentificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transacciones_CEstados">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+          <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Transacciones">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transacciones_CEstados1">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+          <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Transacciones">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transacciones_Clientes">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="NumeroIdentificacion" />
+            </Principal>
+            <Dependent Role="Transacciones">
+              <PropertyRef Name="NumeroIdentificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transacciones_Habitaciones">
+          <End Role="Habitaciones" Type="Self.Habitaciones" Multiplicity="1" />
+          <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Habitaciones">
+              <PropertyRef Name="NumeroHabitacion" />
+            </Principal>
+            <Dependent Role="Transacciones">
+              <PropertyRef Name="NumeroHabitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransaccionesOrdenPago_OrdenPago">
+          <End Role="OrdenPago" Type="Self.OrdenPago" Multiplicity="1" />
+          <End Role="TransaccionesOrdenPago" Type="Self.TransaccionesOrdenPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenPago">
+              <PropertyRef Name="IdOrdenPago" />
+            </Principal>
+            <Dependent Role="TransaccionesOrdenPago">
+              <PropertyRef Name="IdOrdenPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransaccionesOrdenPago_Transacciones">
+          <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="1" />
+          <End Role="TransaccionesOrdenPago" Type="Self.TransaccionesOrdenPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transacciones">
+              <PropertyRef Name="IdTransaccion" />
+            </Principal>
+            <Dependent Role="TransaccionesOrdenPago">
+              <PropertyRef Name="IdTransaccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CrearCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NumeroIdenticacion" Type="varchar" Mode="In" />
+          <Parameter Name="TipoIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Nombres" Type="varchar" Mode="In" />
+          <Parameter Name="Apellidos" Type="nvarchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPAdministradorInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipoIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Nombres" Type="varchar" Mode="In" />
+          <Parameter Name="Apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="User" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="IdEstado" Type="smallint" Mode="In" />
+          <Parameter Name="Observacion" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SPAdministradorSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPAdministradorSelectDocumento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NumeroIdentificacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SPAdministradorUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdAdministrador" Type="int" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="User" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="IdEstado" Type="smallint" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SPClienteFind" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NumeroIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SPClienteInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipoIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Nombres" Type="varchar" Mode="In" />
+          <Parameter Name="Apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SPClienteSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPClienteSelectPorDocumento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NumeroIdentificacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SPClienteUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCliente" Type="int" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="IdEstado" Type="smallint" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SPCTipoHabitacionInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SPCTipoIdentificacionInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipoIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SPDetalleEntradaDeletePorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdDetalleEntrada" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SPDetalleEntradaInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEntrada" Type="int" Mode="In" />
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+          <Parameter Name="Cantidad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SPDetalleOrdenPagoDeletePorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdDetalleOrdenPago" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SPDetalleOrdenPagoInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdOrdenPago" Type="int" Mode="In" />
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+          <Parameter Name="Cantidad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SPEntradaInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaHora" Type="datetime" Mode="In" />
+          <Parameter Name="NumeroIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Total" Type="decimal" Mode="In" />
+          <Parameter Name="IdEstado" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="SPEstadosAdministradorSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPEstadosDeletePorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEstado" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="SPEstadosHabitacionSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPEstadosInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Categoria" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SPEstadosSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPEstadosUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEstado" Type="int" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Categoria" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SPHabitacionDeletePorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdHabitacion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SPHabitacionesInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NumeroHabitacion" Type="varchar" Mode="In" />
+          <Parameter Name="IdTipoHabitacion" Type="int" Mode="In" />
+          <Parameter Name="Tarifa" Type="decimal" Mode="In" />
+          <Parameter Name="NumeroPersonas" Type="int" Mode="In" />
+          <Parameter Name="IdEstado" Type="smallint" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SPHabitacionSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPHabitacionSelectPorHabitacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NumeroHabitacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SPHabitacionUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NumeroHabitacion" Type="varchar" Mode="In" />
+          <Parameter Name="IdTipoHabitacion" Type="int" Mode="In" />
+          <Parameter Name="Tarifa" Type="decimal" Mode="In" />
+          <Parameter Name="NumeroPersonas" Type="int" Mode="In" />
+          <Parameter Name="IdEstado" Type="smallint" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SPOrdenPagoInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaHora" Type="datetime" Mode="In" />
+          <Parameter Name="Total" Type="decimal" Mode="In" />
+          <Parameter Name="IdEstado" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="SPProductoFind" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Codigo" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SPProductoSelectPorCodigo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Codigo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SPProductosSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPProductosUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+          <Parameter Name="NumeroIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Codigo" Type="varchar" Mode="In" />
+          <Parameter Name="Precio" Type="decimal" Mode="In" />
+          <Parameter Name="Costo" Type="decimal" Mode="In" />
+          <Parameter Name="Existencia" Type="int" Mode="In" />
+          <Parameter Name="IdEstado" Type="smallint" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SPProveedoresDeletePorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProveedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SPProveedoresFind" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RazonSocial" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroIdentificacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SPProveedoresInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RazonSocial" Type="varchar" Mode="In" />
+          <Parameter Name="IdTipoIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="IdEstado" Type="smallint" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SPProveedoresSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPProveedoresSelectPorDocumento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NumeroIdentificacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SPProveedoresUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProveedor" Type="int" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="IdEstado" Type="smallint" Mode="In" />
+          <Parameter Name="Observaciones" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SPTipoHabitacionDeletePorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipoHabitacion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SPTipoHabitacionSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPTipoIdentificacionDeletePorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipoIdentificacion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SPTipoIdentificacionSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPTransaccionesInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NumeroIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroHabitacion" Type="varchar" Mode="In" />
+          <Parameter Name="FechaHoraIngreso" Type="datetime" Mode="In" />
+          <Parameter Name="FechaHoraSalida" Type="datetime" Mode="In" />
+          <Parameter Name="TotalDias" Type="int" Mode="In" />
+          <Parameter Name="NumeroPersonas" Type="int" Mode="In" />
+          <Parameter Name="IdEstado" Type="smallint" Mode="In" />
+          <Parameter Name="Total" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="SPTransaccionesOrdePagoInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdOrdenPago" Type="int" Mode="In" />
+          <Parameter Name="IdTransaccion" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="ValidarLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="User" Type="varchar" Mode="In" />
+          <Parameter Name="Pass" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ModeloHotelStoreContainer">
+          <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CEstados" EntityType="Self.CEstados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CTipoHabitacion" EntityType="Self.CTipoHabitacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CTipoIdentificacion" EntityType="Self.CTipoIdentificacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleEntrada" EntityType="Self.DetalleEntrada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleOrdenPago" EntityType="Self.DetalleOrdenPago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entrada" EntityType="Self.Entrada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Habitaciones" EntityType="Self.Habitaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdenPago" EntityType="Self.OrdenPago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transacciones" EntityType="Self.Transacciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransaccionesOrdenPago" EntityType="Self.TransaccionesOrdenPago" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Administrador_CEstados" Association="Self.FK_Administrador_CEstados">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Administrador_CTipoIdentificacion" Association="Self.FK_Administrador_CTipoIdentificacion">
+            <End Role="CTipoIdentificacion" EntitySet="CTipoIdentificacion" />
+            <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clientes_CEstados" Association="Self.FK_Clientes_CEstados">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clientes_CTipoIdentificacion" Association="Self.FK_Clientes_CTipoIdentificacion">
+            <End Role="CTipoIdentificacion" EntitySet="CTipoIdentificacion" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleEntrada_Entrada" Association="Self.FK_DetalleEntrada_Entrada">
+            <End Role="Entrada" EntitySet="Entrada" />
+            <End Role="DetalleEntrada" EntitySet="DetalleEntrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleEntrada_Productos" Association="Self.FK_DetalleEntrada_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleEntrada" EntitySet="DetalleEntrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleOrdenPago_OrdenPago" Association="Self.FK_DetalleOrdenPago_OrdenPago">
+            <End Role="OrdenPago" EntitySet="OrdenPago" />
+            <End Role="DetalleOrdenPago" EntitySet="DetalleOrdenPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleOrdenPago_Productos" Association="Self.FK_DetalleOrdenPago_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleOrdenPago" EntitySet="DetalleOrdenPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleOrdenPago_Productos1" Association="Self.FK_DetalleOrdenPago_Productos1">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleOrdenPago" EntitySet="DetalleOrdenPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entrada_CEstados" Association="Self.FK_Entrada_CEstados">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Entrada" EntitySet="Entrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entrada_Proveedores" Association="Self.FK_Entrada_Proveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="Entrada" EntitySet="Entrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Habitaciones_CEstados" Association="Self.FK_Habitaciones_CEstados">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Habitaciones" EntitySet="Habitaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Habitaciones_CEstados1" Association="Self.FK_Habitaciones_CEstados1">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Habitaciones" EntitySet="Habitaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Habitaciones_CTipoHabitacion" Association="Self.FK_Habitaciones_CTipoHabitacion">
+            <End Role="CTipoHabitacion" EntitySet="CTipoHabitacion" />
+            <End Role="Habitaciones" EntitySet="Habitaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenPago_CEstados" Association="Self.FK_OrdenPago_CEstados">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="OrdenPago" EntitySet="OrdenPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_CEstados" Association="Self.FK_Productos_CEstados">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_Proveedores" Association="Self.FK_Productos_Proveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_CEstados" Association="Self.FK_Proveedores_CEstados">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_CTipoIdentificacion" Association="Self.FK_Proveedores_CTipoIdentificacion">
+            <End Role="CTipoIdentificacion" EntitySet="CTipoIdentificacion" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transacciones_CEstados" Association="Self.FK_Transacciones_CEstados">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Transacciones" EntitySet="Transacciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transacciones_CEstados1" Association="Self.FK_Transacciones_CEstados1">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Transacciones" EntitySet="Transacciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transacciones_Clientes" Association="Self.FK_Transacciones_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Transacciones" EntitySet="Transacciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transacciones_Habitaciones" Association="Self.FK_Transacciones_Habitaciones">
+            <End Role="Habitaciones" EntitySet="Habitaciones" />
+            <End Role="Transacciones" EntitySet="Transacciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransaccionesOrdenPago_OrdenPago" Association="Self.FK_TransaccionesOrdenPago_OrdenPago">
+            <End Role="OrdenPago" EntitySet="OrdenPago" />
+            <End Role="TransaccionesOrdenPago" EntitySet="TransaccionesOrdenPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransaccionesOrdenPago_Transacciones" Association="Self.FK_TransaccionesOrdenPago_Transacciones">
+            <End Role="Transacciones" EntitySet="Transacciones" />
+            <End Role="TransaccionesOrdenPago" EntitySet="TransaccionesOrdenPago" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ModeloHotel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="IdAdministrador" />
+          </Key>
+          <Property Name="IdAdministrador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTipoIdentificacion" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroIdentificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Nombres" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="IdEstado" Type="Int16" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CEstados" Relationship="Self.FK_Administrador_CEstados" FromRole="Administrador" ToRole="CEstados" />
+          <NavigationProperty Name="CTipoIdentificacion" Relationship="Self.FK_Administrador_CTipoIdentificacion" FromRole="Administrador" ToRole="CTipoIdentificacion" />
+        </EntityType>
+        <EntityType Name="CEstados">
+          <Key>
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdEstado" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Categoria" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Administrador" Relationship="Self.FK_Administrador_CEstados" FromRole="CEstados" ToRole="Administrador" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK_Clientes_CEstados" FromRole="CEstados" ToRole="Clientes" />
+          <NavigationProperty Name="Entrada" Relationship="Self.FK_Entrada_CEstados" FromRole="CEstados" ToRole="Entrada" />
+          <NavigationProperty Name="Habitaciones" Relationship="Self.FK_Habitaciones_CEstados" FromRole="CEstados" ToRole="Habitaciones" />
+          <NavigationProperty Name="Habitaciones1" Relationship="Self.FK_Habitaciones_CEstados1" FromRole="CEstados" ToRole="Habitaciones" />
+          <NavigationProperty Name="OrdenPago" Relationship="Self.FK_OrdenPago_CEstados" FromRole="CEstados" ToRole="OrdenPago" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_CEstados" FromRole="CEstados" ToRole="Productos" />
+          <NavigationProperty Name="Proveedores" Relationship="Self.FK_Proveedores_CEstados" FromRole="CEstados" ToRole="Proveedores" />
+          <NavigationProperty Name="Transacciones" Relationship="Self.FK_Transacciones_CEstados" FromRole="CEstados" ToRole="Transacciones" />
+          <NavigationProperty Name="Transacciones1" Relationship="Self.FK_Transacciones_CEstados1" FromRole="CEstados" ToRole="Transacciones" />
+        </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="NumeroIdentificacion" />
+          </Key>
+          <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTipoIdentificacion" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumeroIdentificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombres" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdEstado" Type="Int16" />
+          <NavigationProperty Name="CEstados" Relationship="Self.FK_Clientes_CEstados" FromRole="Clientes" ToRole="CEstados" />
+          <NavigationProperty Name="CTipoIdentificacion" Relationship="Self.FK_Clientes_CTipoIdentificacion" FromRole="Clientes" ToRole="CTipoIdentificacion" />
+          <NavigationProperty Name="Transacciones" Relationship="Self.FK_Transacciones_Clientes" FromRole="Clientes" ToRole="Transacciones" />
+        </EntityType>
+        <EntityType Name="CTipoHabitacion">
+          <Key>
+            <PropertyRef Name="IdTipoHabitacion" />
+          </Key>
+          <Property Name="IdTipoHabitacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Habitaciones" Relationship="Self.FK_Habitaciones_CTipoHabitacion" FromRole="CTipoHabitacion" ToRole="Habitaciones" />
+        </EntityType>
+        <EntityType Name="CTipoIdentificacion">
+          <Key>
+            <PropertyRef Name="IdTipoIdentificacion" />
+          </Key>
+          <Property Name="IdTipoIdentificacion" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Administrador" Relationship="Self.FK_Administrador_CTipoIdentificacion" FromRole="CTipoIdentificacion" ToRole="Administrador" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK_Clientes_CTipoIdentificacion" FromRole="CTipoIdentificacion" ToRole="Clientes" />
+          <NavigationProperty Name="Proveedores" Relationship="Self.FK_Proveedores_CTipoIdentificacion" FromRole="CTipoIdentificacion" ToRole="Proveedores" />
+        </EntityType>
+        <EntityType Name="DetalleEntrada">
+          <Key>
+            <PropertyRef Name="IdDetalleEntrada" />
+          </Key>
+          <Property Name="IdDetalleEntrada" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEntrada" Type="Int32" Nullable="false" />
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Entrada" Relationship="Self.FK_DetalleEntrada_Entrada" FromRole="DetalleEntrada" ToRole="Entrada" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_DetalleEntrada_Productos" FromRole="DetalleEntrada" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="DetalleOrdenPago">
+          <Key>
+            <PropertyRef Name="IdDetalleOrdenPago" />
+          </Key>
+          <Property Name="IdDetalleOrdenPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdOrdenPago" Type="Int32" Nullable="false" />
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrdenPago" Relationship="Self.FK_DetalleOrdenPago_OrdenPago" FromRole="DetalleOrdenPago" ToRole="OrdenPago" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_DetalleOrdenPago_Productos" FromRole="DetalleOrdenPago" ToRole="Productos" />
+          <NavigationProperty Name="Productos1" Relationship="Self.FK_DetalleOrdenPago_Productos1" FromRole="DetalleOrdenPago" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="Entrada">
+          <Key>
+            <PropertyRef Name="IdEntrada" />
+          </Key>
+          <Property Name="IdEntrada" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NumeroIdentificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IdEstado" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="CEstados" Relationship="Self.FK_Entrada_CEstados" FromRole="Entrada" ToRole="CEstados" />
+          <NavigationProperty Name="DetalleEntrada" Relationship="Self.FK_DetalleEntrada_Entrada" FromRole="Entrada" ToRole="DetalleEntrada" />
+          <NavigationProperty Name="Proveedores" Relationship="Self.FK_Entrada_Proveedores" FromRole="Entrada" ToRole="Proveedores" />
+        </EntityType>
+        <EntityType Name="Habitaciones">
+          <Key>
+            <PropertyRef Name="NumeroHabitacion" />
+          </Key>
+          <Property Name="IdHabitacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroHabitacion" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdTipoHabitacion" Type="Int32" Nullable="false" />
+          <Property Name="Tarifa" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="NumeroPersonas" Type="Int32" Nullable="false" />
+          <Property Name="IdEstado" Type="Int16" Nullable="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CEstados" Relationship="Self.FK_Habitaciones_CEstados" FromRole="Habitaciones" ToRole="CEstados" />
+          <NavigationProperty Name="CEstados1" Relationship="Self.FK_Habitaciones_CEstados1" FromRole="Habitaciones" ToRole="CEstados" />
+          <NavigationProperty Name="CTipoHabitacion" Relationship="Self.FK_Habitaciones_CTipoHabitacion" FromRole="Habitaciones" ToRole="CTipoHabitacion" />
+          <NavigationProperty Name="Transacciones" Relationship="Self.FK_Transacciones_Habitaciones" FromRole="Habitaciones" ToRole="Transacciones" />
+        </EntityType>
+        <EntityType Name="OrdenPago">
+          <Key>
+            <PropertyRef Name="IdOrdenPago" />
+          </Key>
+          <Property Name="IdOrdenPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IdEstado" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="CEstados" Relationship="Self.FK_OrdenPago_CEstados" FromRole="OrdenPago" ToRole="CEstados" />
+          <NavigationProperty Name="DetalleOrdenPago" Relationship="Self.FK_DetalleOrdenPago_OrdenPago" FromRole="OrdenPago" ToRole="DetalleOrdenPago" />
+          <NavigationProperty Name="TransaccionesOrdenPago" Relationship="Self.FK_TransaccionesOrdenPago_OrdenPago" FromRole="OrdenPago" ToRole="TransaccionesOrdenPago" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroIdentificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Codigo" Type="String" MaxLength="21" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Costo" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Existencia" Type="Int32" Nullable="false" />
+          <Property Name="IdEstado" Type="Int16" Nullable="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CEstados" Relationship="Self.FK_Productos_CEstados" FromRole="Productos" ToRole="CEstados" />
+          <NavigationProperty Name="DetalleEntrada" Relationship="Self.FK_DetalleEntrada_Productos" FromRole="Productos" ToRole="DetalleEntrada" />
+          <NavigationProperty Name="DetalleOrdenPago" Relationship="Self.FK_DetalleOrdenPago_Productos" FromRole="Productos" ToRole="DetalleOrdenPago" />
+          <NavigationProperty Name="DetalleOrdenPago1" Relationship="Self.FK_DetalleOrdenPago_Productos1" FromRole="Productos" ToRole="DetalleOrdenPago" />
+          <NavigationProperty Name="Proveedores" Relationship="Self.FK_Productos_Proveedores" FromRole="Productos" ToRole="Proveedores" />
+        </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="NumeroIdentificacion" />
+          </Key>
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RazonSocial" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IdTipoIdentificacion" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroIdentificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IdEstado" Type="Int16" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CEstados" Relationship="Self.FK_Proveedores_CEstados" FromRole="Proveedores" ToRole="CEstados" />
+          <NavigationProperty Name="CTipoIdentificacion" Relationship="Self.FK_Proveedores_CTipoIdentificacion" FromRole="Proveedores" ToRole="CTipoIdentificacion" />
+          <NavigationProperty Name="Entrada" Relationship="Self.FK_Entrada_Proveedores" FromRole="Proveedores" ToRole="Entrada" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Proveedores" FromRole="Proveedores" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Transacciones">
+          <Key>
+            <PropertyRef Name="IdTransaccion" />
+          </Key>
+          <Property Name="IdTransaccion" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroIdentificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumeroHabitacion" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaHoraIngreso" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaHoraSalida" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TotalDias" Type="Int32" Nullable="false" />
+          <Property Name="NumeroPersonas" Type="Int32" Nullable="false" />
+          <Property Name="IdEstado" Type="Int16" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="CEstados" Relationship="Self.FK_Transacciones_CEstados" FromRole="Transacciones" ToRole="CEstados" />
+          <NavigationProperty Name="CEstados1" Relationship="Self.FK_Transacciones_CEstados1" FromRole="Transacciones" ToRole="CEstados" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK_Transacciones_Clientes" FromRole="Transacciones" ToRole="Clientes" />
+          <NavigationProperty Name="Habitaciones" Relationship="Self.FK_Transacciones_Habitaciones" FromRole="Transacciones" ToRole="Habitaciones" />
+          <NavigationProperty Name="TransaccionesOrdenPago" Relationship="Self.FK_TransaccionesOrdenPago_Transacciones" FromRole="Transacciones" ToRole="TransaccionesOrdenPago" />
+        </EntityType>
+        <EntityType Name="TransaccionesOrdenPago">
+          <Key>
+            <PropertyRef Name="IdTransaccionOrdenPago" />
+          </Key>
+          <Property Name="IdTransaccionOrdenPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdOrdenPago" Type="Int32" Nullable="false" />
+          <Property Name="IdTransaccion" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="OrdenPago" Relationship="Self.FK_TransaccionesOrdenPago_OrdenPago" FromRole="TransaccionesOrdenPago" ToRole="OrdenPago" />
+          <NavigationProperty Name="Transacciones" Relationship="Self.FK_TransaccionesOrdenPago_Transacciones" FromRole="TransaccionesOrdenPago" ToRole="Transacciones" />
+        </EntityType>
+        <Association Name="FK_Administrador_CEstados">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="0..1" />
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Administrador">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Administrador_CTipoIdentificacion">
+          <End Role="CTipoIdentificacion" Type="Self.CTipoIdentificacion" Multiplicity="0..1" />
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CTipoIdentificacion">
+              <PropertyRef Name="IdTipoIdentificacion" />
+            </Principal>
+            <Dependent Role="Administrador">
+              <PropertyRef Name="IdTipoIdentificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clientes_CEstados">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="0..1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entrada_CEstados">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+          <End Role="Entrada" Type="Self.Entrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Entrada">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Habitaciones_CEstados">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+          <End Role="Habitaciones" Type="Self.Habitaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Habitaciones">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Habitaciones_CEstados1">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+          <End Role="Habitaciones" Type="Self.Habitaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Habitaciones">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenPago_CEstados">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+          <End Role="OrdenPago" Type="Self.OrdenPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="OrdenPago">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_CEstados">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_CEstados">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="0..1" />
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transacciones_CEstados">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+          <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Transacciones">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transacciones_CEstados1">
+          <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+          <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CEstados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Transacciones">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clientes_CTipoIdentificacion">
+          <End Role="CTipoIdentificacion" Type="Self.CTipoIdentificacion" Multiplicity="1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CTipoIdentificacion">
+              <PropertyRef Name="IdTipoIdentificacion" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="IdTipoIdentificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transacciones_Clientes">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="NumeroIdentificacion" />
+            </Principal>
+            <Dependent Role="Transacciones">
+              <PropertyRef Name="NumeroIdentificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Habitaciones_CTipoHabitacion">
+          <End Role="CTipoHabitacion" Type="Self.CTipoHabitacion" Multiplicity="1" />
+          <End Role="Habitaciones" Type="Self.Habitaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CTipoHabitacion">
+              <PropertyRef Name="IdTipoHabitacion" />
+            </Principal>
+            <Dependent Role="Habitaciones">
+              <PropertyRef Name="IdTipoHabitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_CTipoIdentificacion">
+          <End Role="CTipoIdentificacion" Type="Self.CTipoIdentificacion" Multiplicity="0..1" />
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CTipoIdentificacion">
+              <PropertyRef Name="IdTipoIdentificacion" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdTipoIdentificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleEntrada_Entrada">
+          <End Role="Entrada" Type="Self.Entrada" Multiplicity="1" />
+          <End Role="DetalleEntrada" Type="Self.DetalleEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entrada">
+              <PropertyRef Name="IdEntrada" />
+            </Principal>
+            <Dependent Role="DetalleEntrada">
+              <PropertyRef Name="IdEntrada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleEntrada_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="DetalleEntrada" Type="Self.DetalleEntrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="DetalleEntrada">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleOrdenPago_OrdenPago">
+          <End Role="OrdenPago" Type="Self.OrdenPago" Multiplicity="1" />
+          <End Role="DetalleOrdenPago" Type="Self.DetalleOrdenPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenPago">
+              <PropertyRef Name="IdOrdenPago" />
+            </Principal>
+            <Dependent Role="DetalleOrdenPago">
+              <PropertyRef Name="IdOrdenPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleOrdenPago_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="DetalleOrdenPago" Type="Self.DetalleOrdenPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="DetalleOrdenPago">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleOrdenPago_Productos1">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="DetalleOrdenPago" Type="Self.DetalleOrdenPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="DetalleOrdenPago">
+              <PropertyRef Name="IdOrdenPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entrada_Proveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+          <End Role="Entrada" Type="Self.Entrada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="NumeroIdentificacion" />
+            </Principal>
+            <Dependent Role="Entrada">
+              <PropertyRef Name="NumeroIdentificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transacciones_Habitaciones">
+          <End Role="Habitaciones" Type="Self.Habitaciones" Multiplicity="1" />
+          <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Habitaciones">
+              <PropertyRef Name="NumeroHabitacion" />
+            </Principal>
+            <Dependent Role="Transacciones">
+              <PropertyRef Name="NumeroHabitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransaccionesOrdenPago_OrdenPago">
+          <End Role="OrdenPago" Type="Self.OrdenPago" Multiplicity="1" />
+          <End Role="TransaccionesOrdenPago" Type="Self.TransaccionesOrdenPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenPago">
+              <PropertyRef Name="IdOrdenPago" />
+            </Principal>
+            <Dependent Role="TransaccionesOrdenPago">
+              <PropertyRef Name="IdOrdenPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_Proveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="NumeroIdentificacion" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="NumeroIdentificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransaccionesOrdenPago_Transacciones">
+          <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="1" />
+          <End Role="TransaccionesOrdenPago" Type="Self.TransaccionesOrdenPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transacciones">
+              <PropertyRef Name="IdTransaccion" />
+            </Principal>
+            <Dependent Role="TransaccionesOrdenPago">
+              <PropertyRef Name="IdTransaccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Conexion" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrador" EntityType="Self.Administrador" />
+          <EntitySet Name="CEstados" EntityType="Self.CEstados" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+          <EntitySet Name="CTipoHabitacion" EntityType="Self.CTipoHabitacion" />
+          <EntitySet Name="CTipoIdentificacion" EntityType="Self.CTipoIdentificacion" />
+          <EntitySet Name="DetalleEntrada" EntityType="Self.DetalleEntrada" />
+          <EntitySet Name="DetalleOrdenPago" EntityType="Self.DetalleOrdenPago" />
+          <EntitySet Name="Entrada" EntityType="Self.Entrada" />
+          <EntitySet Name="Habitaciones" EntityType="Self.Habitaciones" />
+          <EntitySet Name="OrdenPago" EntityType="Self.OrdenPago" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" />
+          <EntitySet Name="Proveedores" EntityType="Self.Proveedores" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Transacciones" EntityType="Self.Transacciones" />
+          <EntitySet Name="TransaccionesOrdenPago" EntityType="Self.TransaccionesOrdenPago" />
+          <AssociationSet Name="FK_Administrador_CEstados" Association="Self.FK_Administrador_CEstados">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Administrador_CTipoIdentificacion" Association="Self.FK_Administrador_CTipoIdentificacion">
+            <End Role="CTipoIdentificacion" EntitySet="CTipoIdentificacion" />
+            <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clientes_CEstados" Association="Self.FK_Clientes_CEstados">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entrada_CEstados" Association="Self.FK_Entrada_CEstados">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Entrada" EntitySet="Entrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Habitaciones_CEstados" Association="Self.FK_Habitaciones_CEstados">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Habitaciones" EntitySet="Habitaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Habitaciones_CEstados1" Association="Self.FK_Habitaciones_CEstados1">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Habitaciones" EntitySet="Habitaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenPago_CEstados" Association="Self.FK_OrdenPago_CEstados">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="OrdenPago" EntitySet="OrdenPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_CEstados" Association="Self.FK_Productos_CEstados">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_CEstados" Association="Self.FK_Proveedores_CEstados">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transacciones_CEstados" Association="Self.FK_Transacciones_CEstados">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Transacciones" EntitySet="Transacciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transacciones_CEstados1" Association="Self.FK_Transacciones_CEstados1">
+            <End Role="CEstados" EntitySet="CEstados" />
+            <End Role="Transacciones" EntitySet="Transacciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clientes_CTipoIdentificacion" Association="Self.FK_Clientes_CTipoIdentificacion">
+            <End Role="CTipoIdentificacion" EntitySet="CTipoIdentificacion" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transacciones_Clientes" Association="Self.FK_Transacciones_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Transacciones" EntitySet="Transacciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Habitaciones_CTipoHabitacion" Association="Self.FK_Habitaciones_CTipoHabitacion">
+            <End Role="CTipoHabitacion" EntitySet="CTipoHabitacion" />
+            <End Role="Habitaciones" EntitySet="Habitaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_CTipoIdentificacion" Association="Self.FK_Proveedores_CTipoIdentificacion">
+            <End Role="CTipoIdentificacion" EntitySet="CTipoIdentificacion" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleEntrada_Entrada" Association="Self.FK_DetalleEntrada_Entrada">
+            <End Role="Entrada" EntitySet="Entrada" />
+            <End Role="DetalleEntrada" EntitySet="DetalleEntrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleEntrada_Productos" Association="Self.FK_DetalleEntrada_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleEntrada" EntitySet="DetalleEntrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleOrdenPago_OrdenPago" Association="Self.FK_DetalleOrdenPago_OrdenPago">
+            <End Role="OrdenPago" EntitySet="OrdenPago" />
+            <End Role="DetalleOrdenPago" EntitySet="DetalleOrdenPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleOrdenPago_Productos" Association="Self.FK_DetalleOrdenPago_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleOrdenPago" EntitySet="DetalleOrdenPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleOrdenPago_Productos1" Association="Self.FK_DetalleOrdenPago_Productos1">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleOrdenPago" EntitySet="DetalleOrdenPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entrada_Proveedores" Association="Self.FK_Entrada_Proveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="Entrada" EntitySet="Entrada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transacciones_Habitaciones" Association="Self.FK_Transacciones_Habitaciones">
+            <End Role="Habitaciones" EntitySet="Habitaciones" />
+            <End Role="Transacciones" EntitySet="Transacciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransaccionesOrdenPago_OrdenPago" Association="Self.FK_TransaccionesOrdenPago_OrdenPago">
+            <End Role="OrdenPago" EntitySet="OrdenPago" />
+            <End Role="TransaccionesOrdenPago" EntitySet="TransaccionesOrdenPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_Proveedores" Association="Self.FK_Productos_Proveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransaccionesOrdenPago_Transacciones" Association="Self.FK_TransaccionesOrdenPago_Transacciones">
+            <End Role="Transacciones" EntitySet="Transacciones" />
+            <End Role="TransaccionesOrdenPago" EntitySet="TransaccionesOrdenPago" />
+          </AssociationSet>
+          <FunctionImport Name="CrearCliente">
+            <Parameter Name="NumeroIdenticacion" Mode="In" Type="String" />
+            <Parameter Name="TipoIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="Nombres" Mode="In" Type="String" />
+            <Parameter Name="Apellidos" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ModeloHotel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ModeloHotel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="SPAdministradorInsert">
+            <Parameter Name="IdTipoIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="Nombres" Mode="In" Type="String" />
+            <Parameter Name="Apellidos" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="User" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+            <Parameter Name="Observacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPAdministradorSelect" ReturnType="Collection(ModeloHotel.SPAdministradorSelect_Result)" />
+          <FunctionImport Name="SPAdministradorSelectDocumento" ReturnType="Collection(ModeloHotel.SPAdministradorSelectDocumento_Result)">
+            <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPAdministradorUpdate">
+            <Parameter Name="IdAdministrador" Mode="In" Type="Int32" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="User" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPClienteFind" ReturnType="Collection(ModeloHotel.SPClienteFind_Result)">
+            <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPClienteInsert">
+            <Parameter Name="IdTipoIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="Nombres" Mode="In" Type="String" />
+            <Parameter Name="Apellidos" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPClienteSelect" ReturnType="Collection(ModeloHotel.SPClienteSelect_Result)" />
+          <FunctionImport Name="SPClienteSelectPorDocumento" ReturnType="Collection(ModeloHotel.SPClienteSelectPorDocumento_Result)">
+            <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPClienteUpdate">
+            <Parameter Name="IdCliente" Mode="In" Type="Int32" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPCTipoHabitacionInsert">
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPCTipoIdentificacionInsert">
+            <Parameter Name="IdTipoIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPDetalleEntradaDeletePorId">
+            <Parameter Name="IdDetalleEntrada" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPDetalleEntradaInsert">
+            <Parameter Name="IdEntrada" Mode="In" Type="Int32" />
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+            <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPDetalleOrdenPagoDeletePorId">
+            <Parameter Name="IdDetalleOrdenPago" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPDetalleOrdenPagoInsert">
+            <Parameter Name="IdOrdenPago" Mode="In" Type="Int32" />
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+            <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPEntradaInsert">
+            <Parameter Name="FechaHora" Mode="In" Type="DateTime" />
+            <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="Total" Mode="In" Type="Decimal" />
+            <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="SPEstadosAdministradorSelect" ReturnType="Collection(ModeloHotel.SPEstadosAdministradorSelect_Result)" />
+          <FunctionImport Name="SPEstadosDeletePorId">
+            <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="SPEstadosHabitacionSelect" ReturnType="Collection(ModeloHotel.SPEstadosHabitacionSelect_Result)" />
+          <FunctionImport Name="SPEstadosInsert">
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Categoria" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPEstadosSelect" ReturnType="Collection(ModeloHotel.SPEstadosSelect_Result)" />
+          <FunctionImport Name="SPEstadosUpdate">
+            <Parameter Name="IdEstado" Mode="In" Type="Int32" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Categoria" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPHabitacionDeletePorId">
+            <Parameter Name="IdHabitacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPHabitacionesInsert">
+            <Parameter Name="NumeroHabitacion" Mode="In" Type="String" />
+            <Parameter Name="IdTipoHabitacion" Mode="In" Type="Int32" />
+            <Parameter Name="Tarifa" Mode="In" Type="Decimal" />
+            <Parameter Name="NumeroPersonas" Mode="In" Type="Int32" />
+            <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPHabitacionSelect" ReturnType="Collection(ModeloHotel.SPHabitacionSelect_Result)" />
+          <FunctionImport Name="SPHabitacionSelectPorHabitacion" ReturnType="Collection(ModeloHotel.SPHabitacionSelectPorHabitacion_Result)">
+            <Parameter Name="NumeroHabitacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPHabitacionUpdate">
+            <Parameter Name="NumeroHabitacion" Mode="In" Type="String" />
+            <Parameter Name="IdTipoHabitacion" Mode="In" Type="Int32" />
+            <Parameter Name="Tarifa" Mode="In" Type="Decimal" />
+            <Parameter Name="NumeroPersonas" Mode="In" Type="Int32" />
+            <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPOrdenPagoInsert">
+            <Parameter Name="FechaHora" Mode="In" Type="DateTime" />
+            <Parameter Name="Total" Mode="In" Type="Decimal" />
+            <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="SPProductoFind" ReturnType="Collection(ModeloHotel.SPProductoFind_Result)">
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPProductoSelectPorCodigo" ReturnType="Collection(ModeloHotel.SPProductoSelectPorCodigo_Result)">
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPProductosSelect" ReturnType="Collection(ModeloHotel.SPProductosSelect_Result)" />
+          <FunctionImport Name="SPProductosUpdate">
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+            <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="Precio" Mode="In" Type="Decimal" />
+            <Parameter Name="Costo" Mode="In" Type="Decimal" />
+            <Parameter Name="Existencia" Mode="In" Type="Int32" />
+            <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPProveedoresDeletePorId">
+            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPProveedoresFind" ReturnType="Collection(ModeloHotel.SPProveedoresFind_Result)">
+            <Parameter Name="RazonSocial" Mode="In" Type="String" />
+            <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPProveedoresInsert">
+            <Parameter Name="RazonSocial" Mode="In" Type="String" />
+            <Parameter Name="IdTipoIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPProveedoresSelect" ReturnType="Collection(ModeloHotel.SPProveedoresSelect_Result)" />
+          <FunctionImport Name="SPProveedoresSelectPorDocumento" ReturnType="Collection(ModeloHotel.SPProveedoresSelectPorDocumento_Result)">
+            <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPProveedoresUpdate">
+            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+            <Parameter Name="Observaciones" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPTipoHabitacionDeletePorId">
+            <Parameter Name="IdTipoHabitacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPTipoHabitacionSelect" ReturnType="Collection(ModeloHotel.SPTipoHabitacionSelect_Result)" />
+          <FunctionImport Name="SPTipoIdentificacionDeletePorId">
+            <Parameter Name="IdTipoIdentificacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPTipoIdentificacionSelect" ReturnType="Collection(ModeloHotel.SPTipoIdentificacionSelect_Result)" />
+          <FunctionImport Name="SPTransaccionesInsert">
+            <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="NumeroHabitacion" Mode="In" Type="String" />
+            <Parameter Name="FechaHoraIngreso" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaHoraSalida" Mode="In" Type="DateTime" />
+            <Parameter Name="TotalDias" Mode="In" Type="Int32" />
+            <Parameter Name="NumeroPersonas" Mode="In" Type="Int32" />
+            <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+            <Parameter Name="Total" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SPTransaccionesOrdePagoInsert">
+            <Parameter Name="IdOrdenPago" Mode="In" Type="Int32" />
+            <Parameter Name="IdTransaccion" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="ValidarLogin">
+            <Parameter Name="User" Mode="In" Type="String" />
+            <Parameter Name="Pass" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SPAdministradorSelect_Result">
+          <Property Type="Int32" Name="IdAdministrador" Nullable="false" />
+          <Property Type="String" Name="IdTipoIdentificacion" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="NumeroIdentificacion" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Telefono" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Correo" Nullable="false" MaxLength="255" />
+          <Property Type="Int16" Name="IdEstado" Nullable="true" />
+          <Property Type="String" Name="Observaciones" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPAdministradorSelectDocumento_Result">
+          <Property Type="Int32" Name="IdAdministrador" Nullable="false" />
+          <Property Type="String" Name="IdTipoIdentificacion" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="NumeroIdentificacion" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Telefono" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Correo" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="User" Nullable="true" MaxLength="16" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="16" />
+          <Property Type="Int16" Name="IdEstado" Nullable="true" />
+          <Property Type="String" Name="Observaciones" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPClienteFind_Result">
+          <Property Type="Int32" Name="IdCliente" Nullable="false" />
+          <Property Type="String" Name="IdTipoIdentificacion" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Telefono" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Observaciones" Nullable="true" />
+          <Property Type="Int16" Name="IdEstado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPClienteSelect_Result">
+          <Property Type="String" Name="IdTipoIdentificacion" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Telefono" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="32" />
+          <Property Type="String" Name="Observaciones" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPClienteSelectPorDocumento_Result">
+          <Property Type="Int32" Name="IdCliente" Nullable="false" />
+          <Property Type="String" Name="IdTipoIdentificacion" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Telefono" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Observaciones" Nullable="true" />
+          <Property Type="Int16" Name="IdEstado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPEstadosAdministradorSelect_Result">
+          <Property Type="Int16" Name="IdEstado" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="32" />
+        </ComplexType>
+        <ComplexType Name="SPEstadosHabitacionSelect_Result">
+          <Property Type="Int16" Name="IdEstado" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="32" />
+        </ComplexType>
+        <ComplexType Name="SPEstadosSelect_Result">
+          <Property Type="Int16" Name="IdEstado" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="32" />
+          <Property Type="String" Name="Categoria" Nullable="true" MaxLength="16" />
+        </ComplexType>
+        <ComplexType Name="SPHabitacionSelect_Result">
+          <Property Type="Int32" Name="IdHabitacion" Nullable="false" />
+          <Property Type="String" Name="NumeroHabitacion" Nullable="false" MaxLength="5" />
+          <Property Type="Int32" Name="IdTipoHabitacion" Nullable="false" />
+          <Property Type="Decimal" Name="Tarifa" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="NumeroPersonas" Nullable="false" />
+          <Property Type="Int16" Name="IdEstado" Nullable="false" />
+          <Property Type="String" Name="Observaciones" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPHabitacionSelectPorHabitacion_Result">
+          <Property Type="String" Name="NumeroHabitacion" Nullable="false" MaxLength="5" />
+          <Property Type="Int32" Name="IdTipoHabitacion" Nullable="false" />
+          <Property Type="Decimal" Name="Tarifa" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="NumeroPersonas" Nullable="false" />
+          <Property Type="Int16" Name="IdEstado" Nullable="false" />
+          <Property Type="String" Name="Observaciones" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPProductoFind_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="21" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Costo" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="Existencia" Nullable="false" />
+          <Property Type="Int16" Name="IdEstado" Nullable="false" />
+          <Property Type="String" Name="Observaciones" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SPProductoSelectPorCodigo_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="21" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Costo" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="Existencia" Nullable="false" />
+          <Property Type="Int16" Name="IdEstado" Nullable="false" />
+          <Property Type="String" Name="Observaciones" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SPProductosSelect_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="21" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Costo" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="Existencia" Nullable="false" />
+          <Property Type="Int16" Name="IdEstado" Nullable="false" />
+          <Property Type="String" Name="Observaciones" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SPProveedoresFind_Result">
+          <Property Type="Int32" Name="IdProveedor" Nullable="false" />
+          <Property Type="String" Name="RazonSocial" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="IdTipoIdentificacion" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="255" />
+          <Property Type="Int16" Name="IdEstado" Nullable="true" />
+          <Property Type="String" Name="Observaciones" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPProveedoresSelect_Result">
+          <Property Type="Int32" Name="IdProveedor" Nullable="false" />
+          <Property Type="String" Name="RazonSocial" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="IdTipoIdentificacion" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="255" />
+          <Property Type="Int16" Name="IdEstado" Nullable="true" />
+          <Property Type="String" Name="Observaciones" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPProveedoresSelectPorDocumento_Result">
+          <Property Type="Int32" Name="IdProveedor" Nullable="false" />
+          <Property Type="String" Name="RazonSocial" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="IdTipoIdentificacion" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="255" />
+          <Property Type="Int16" Name="IdEstado" Nullable="true" />
+          <Property Type="String" Name="Observaciones" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPTipoHabitacionSelect_Result">
+          <Property Type="Int32" Name="IdTipoHabitacion" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="32" />
+        </ComplexType>
+        <ComplexType Name="SPTipoIdentificacionSelect_Result">
+          <Property Type="String" Name="IdTipoIdentificacion" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="32" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModeloHotelStoreContainer" CdmEntityContainer="Conexion">
+          <EntitySetMapping Name="Administrador">
+            <EntityTypeMapping TypeName="ModeloHotel.Administrador">
+              <MappingFragment StoreEntitySet="Administrador">
+                <ScalarProperty Name="IdAdministrador" ColumnName="IdAdministrador" />
+                <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CEstados">
+            <EntityTypeMapping TypeName="ModeloHotel.CEstados">
+              <MappingFragment StoreEntitySet="CEstados">
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="ModeloHotel.Clientes">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CTipoHabitacion">
+            <EntityTypeMapping TypeName="ModeloHotel.CTipoHabitacion">
+              <MappingFragment StoreEntitySet="CTipoHabitacion">
+                <ScalarProperty Name="IdTipoHabitacion" ColumnName="IdTipoHabitacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CTipoIdentificacion">
+            <EntityTypeMapping TypeName="ModeloHotel.CTipoIdentificacion">
+              <MappingFragment StoreEntitySet="CTipoIdentificacion">
+                <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleEntrada">
+            <EntityTypeMapping TypeName="ModeloHotel.DetalleEntrada">
+              <MappingFragment StoreEntitySet="DetalleEntrada">
+                <ScalarProperty Name="IdDetalleEntrada" ColumnName="IdDetalleEntrada" />
+                <ScalarProperty Name="IdEntrada" ColumnName="IdEntrada" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleOrdenPago">
+            <EntityTypeMapping TypeName="ModeloHotel.DetalleOrdenPago">
+              <MappingFragment StoreEntitySet="DetalleOrdenPago">
+                <ScalarProperty Name="IdDetalleOrdenPago" ColumnName="IdDetalleOrdenPago" />
+                <ScalarProperty Name="IdOrdenPago" ColumnName="IdOrdenPago" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entrada">
+            <EntityTypeMapping TypeName="ModeloHotel.Entrada">
+              <MappingFragment StoreEntitySet="Entrada">
+                <ScalarProperty Name="IdEntrada" ColumnName="IdEntrada" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Habitaciones">
+            <EntityTypeMapping TypeName="ModeloHotel.Habitaciones">
+              <MappingFragment StoreEntitySet="Habitaciones">
+                <ScalarProperty Name="IdHabitacion" ColumnName="IdHabitacion" />
+                <ScalarProperty Name="NumeroHabitacion" ColumnName="NumeroHabitacion" />
+                <ScalarProperty Name="IdTipoHabitacion" ColumnName="IdTipoHabitacion" />
+                <ScalarProperty Name="Tarifa" ColumnName="Tarifa" />
+                <ScalarProperty Name="NumeroPersonas" ColumnName="NumeroPersonas" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdenPago">
+            <EntityTypeMapping TypeName="ModeloHotel.OrdenPago">
+              <MappingFragment StoreEntitySet="OrdenPago">
+                <ScalarProperty Name="IdOrdenPago" ColumnName="IdOrdenPago" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="ModeloHotel.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="Existencia" ColumnName="Existencia" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedores">
+            <EntityTypeMapping TypeName="ModeloHotel.Proveedores">
+              <MappingFragment StoreEntitySet="Proveedores">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ModeloHotel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transacciones">
+            <EntityTypeMapping TypeName="ModeloHotel.Transacciones">
+              <MappingFragment StoreEntitySet="Transacciones">
+                <ScalarProperty Name="IdTransaccion" ColumnName="IdTransaccion" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="NumeroHabitacion" ColumnName="NumeroHabitacion" />
+                <ScalarProperty Name="FechaHoraIngreso" ColumnName="FechaHoraIngreso" />
+                <ScalarProperty Name="FechaHoraSalida" ColumnName="FechaHoraSalida" />
+                <ScalarProperty Name="TotalDias" ColumnName="TotalDias" />
+                <ScalarProperty Name="NumeroPersonas" ColumnName="NumeroPersonas" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransaccionesOrdenPago">
+            <EntityTypeMapping TypeName="ModeloHotel.TransaccionesOrdenPago">
+              <MappingFragment StoreEntitySet="TransaccionesOrdenPago">
+                <ScalarProperty Name="IdTransaccionOrdenPago" ColumnName="IdTransaccionOrdenPago" />
+                <ScalarProperty Name="IdOrdenPago" ColumnName="IdOrdenPago" />
+                <ScalarProperty Name="IdTransaccion" ColumnName="IdTransaccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CrearCliente" FunctionName="ModeloHotel.Store.CrearCliente" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ModeloHotel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ModeloHotel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ModeloHotel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ModeloHotel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ModeloHotel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ModeloHotel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ModeloHotel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="SPAdministradorInsert" FunctionName="ModeloHotel.Store.SPAdministradorInsert" />
+          <FunctionImportMapping FunctionImportName="SPAdministradorSelect" FunctionName="ModeloHotel.Store.SPAdministradorSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPAdministradorSelect_Result">
+                <ScalarProperty Name="IdAdministrador" ColumnName="IdAdministrador" />
+                <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPAdministradorSelectDocumento" FunctionName="ModeloHotel.Store.SPAdministradorSelectDocumento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPAdministradorSelectDocumento_Result">
+                <ScalarProperty Name="IdAdministrador" ColumnName="IdAdministrador" />
+                <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPAdministradorUpdate" FunctionName="ModeloHotel.Store.SPAdministradorUpdate" />
+          <FunctionImportMapping FunctionImportName="SPClienteFind" FunctionName="ModeloHotel.Store.SPClienteFind">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPClienteFind_Result">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPClienteInsert" FunctionName="ModeloHotel.Store.SPClienteInsert" />
+          <FunctionImportMapping FunctionImportName="SPClienteSelect" FunctionName="ModeloHotel.Store.SPClienteSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPClienteSelect_Result">
+                <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPClienteSelectPorDocumento" FunctionName="ModeloHotel.Store.SPClienteSelectPorDocumento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPClienteSelectPorDocumento_Result">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPClienteUpdate" FunctionName="ModeloHotel.Store.SPClienteUpdate" />
+          <FunctionImportMapping FunctionImportName="SPCTipoHabitacionInsert" FunctionName="ModeloHotel.Store.SPCTipoHabitacionInsert" />
+          <FunctionImportMapping FunctionImportName="SPCTipoIdentificacionInsert" FunctionName="ModeloHotel.Store.SPCTipoIdentificacionInsert" />
+          <FunctionImportMapping FunctionImportName="SPDetalleEntradaDeletePorId" FunctionName="ModeloHotel.Store.SPDetalleEntradaDeletePorId" />
+          <FunctionImportMapping FunctionImportName="SPDetalleEntradaInsert" FunctionName="ModeloHotel.Store.SPDetalleEntradaInsert" />
+          <FunctionImportMapping FunctionImportName="SPDetalleOrdenPagoDeletePorId" FunctionName="ModeloHotel.Store.SPDetalleOrdenPagoDeletePorId" />
+          <FunctionImportMapping FunctionImportName="SPDetalleOrdenPagoInsert" FunctionName="ModeloHotel.Store.SPDetalleOrdenPagoInsert" />
+          <FunctionImportMapping FunctionImportName="SPEntradaInsert" FunctionName="ModeloHotel.Store.SPEntradaInsert" />
+          <FunctionImportMapping FunctionImportName="SPEstadosAdministradorSelect" FunctionName="ModeloHotel.Store.SPEstadosAdministradorSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPEstadosAdministradorSelect_Result">
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPEstadosDeletePorId" FunctionName="ModeloHotel.Store.SPEstadosDeletePorId" />
+          <FunctionImportMapping FunctionImportName="SPEstadosHabitacionSelect" FunctionName="ModeloHotel.Store.SPEstadosHabitacionSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPEstadosHabitacionSelect_Result">
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPEstadosInsert" FunctionName="ModeloHotel.Store.SPEstadosInsert" />
+          <FunctionImportMapping FunctionImportName="SPEstadosSelect" FunctionName="ModeloHotel.Store.SPEstadosSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPEstadosSelect_Result">
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPEstadosUpdate" FunctionName="ModeloHotel.Store.SPEstadosUpdate" />
+          <FunctionImportMapping FunctionImportName="SPHabitacionDeletePorId" FunctionName="ModeloHotel.Store.SPHabitacionDeletePorId" />
+          <FunctionImportMapping FunctionImportName="SPHabitacionesInsert" FunctionName="ModeloHotel.Store.SPHabitacionesInsert" />
+          <FunctionImportMapping FunctionImportName="SPHabitacionSelect" FunctionName="ModeloHotel.Store.SPHabitacionSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPHabitacionSelect_Result">
+                <ScalarProperty Name="IdHabitacion" ColumnName="IdHabitacion" />
+                <ScalarProperty Name="NumeroHabitacion" ColumnName="NumeroHabitacion" />
+                <ScalarProperty Name="IdTipoHabitacion" ColumnName="IdTipoHabitacion" />
+                <ScalarProperty Name="Tarifa" ColumnName="Tarifa" />
+                <ScalarProperty Name="NumeroPersonas" ColumnName="NumeroPersonas" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPHabitacionSelectPorHabitacion" FunctionName="ModeloHotel.Store.SPHabitacionSelectPorHabitacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPHabitacionSelectPorHabitacion_Result">
+                <ScalarProperty Name="NumeroHabitacion" ColumnName="NumeroHabitacion" />
+                <ScalarProperty Name="IdTipoHabitacion" ColumnName="IdTipoHabitacion" />
+                <ScalarProperty Name="Tarifa" ColumnName="Tarifa" />
+                <ScalarProperty Name="NumeroPersonas" ColumnName="NumeroPersonas" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPHabitacionUpdate" FunctionName="ModeloHotel.Store.SPHabitacionUpdate" />
+          <FunctionImportMapping FunctionImportName="SPOrdenPagoInsert" FunctionName="ModeloHotel.Store.SPOrdenPagoInsert" />
+          <FunctionImportMapping FunctionImportName="SPProductoFind" FunctionName="ModeloHotel.Store.SPProductoFind">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPProductoFind_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="Existencia" ColumnName="Existencia" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPProductoSelectPorCodigo" FunctionName="ModeloHotel.Store.SPProductoSelectPorCodigo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPProductoSelectPorCodigo_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="Existencia" ColumnName="Existencia" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPProductosSelect" FunctionName="ModeloHotel.Store.SPProductosSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPProductosSelect_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="Existencia" ColumnName="Existencia" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPProductosUpdate" FunctionName="ModeloHotel.Store.SPProductosUpdate" />
+          <FunctionImportMapping FunctionImportName="SPProveedoresDeletePorId" FunctionName="ModeloHotel.Store.SPProveedoresDeletePorId" />
+          <FunctionImportMapping FunctionImportName="SPProveedoresFind" FunctionName="ModeloHotel.Store.SPProveedoresFind">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPProveedoresFind_Result">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPProveedoresInsert" FunctionName="ModeloHotel.Store.SPProveedoresInsert" />
+          <FunctionImportMapping FunctionImportName="SPProveedoresSelect" FunctionName="ModeloHotel.Store.SPProveedoresSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPProveedoresSelect_Result">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPProveedoresSelectPorDocumento" FunctionName="ModeloHotel.Store.SPProveedoresSelectPorDocumento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPProveedoresSelectPorDocumento_Result">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+                <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPProveedoresUpdate" FunctionName="ModeloHotel.Store.SPProveedoresUpdate" />
+          <FunctionImportMapping FunctionImportName="SPTipoHabitacionDeletePorId" FunctionName="ModeloHotel.Store.SPTipoHabitacionDeletePorId" />
+          <FunctionImportMapping FunctionImportName="SPTipoHabitacionSelect" FunctionName="ModeloHotel.Store.SPTipoHabitacionSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPTipoHabitacionSelect_Result">
+                <ScalarProperty Name="IdTipoHabitacion" ColumnName="IdTipoHabitacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPTipoIdentificacionDeletePorId" FunctionName="ModeloHotel.Store.SPTipoIdentificacionDeletePorId" />
+          <FunctionImportMapping FunctionImportName="SPTipoIdentificacionSelect" FunctionName="ModeloHotel.Store.SPTipoIdentificacionSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloHotel.SPTipoIdentificacionSelect_Result">
+                <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPTransaccionesInsert" FunctionName="ModeloHotel.Store.SPTransaccionesInsert" />
+          <FunctionImportMapping FunctionImportName="SPTransaccionesOrdePagoInsert" FunctionName="ModeloHotel.Store.SPTransaccionesOrdePagoInsert" />
+          <FunctionImportMapping FunctionImportName="ValidarLogin" FunctionName="ModeloHotel.Store.ValidarLogin" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

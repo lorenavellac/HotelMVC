@@ -1,0 +1,1036 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ModeloHotel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Administrador">
+    <Key>
+      <PropertyRef Name="IdAdministrador" />
+    </Key>
+    <Property Name="IdAdministrador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTipoIdentificacion" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="NumeroIdentificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Nombres" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="User" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="IdEstado" Type="Int16" />
+    <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CEstados" Relationship="Self.FK_Administrador_CEstados" FromRole="Administrador" ToRole="CEstados" />
+    <NavigationProperty Name="CTipoIdentificacion" Relationship="Self.FK_Administrador_CTipoIdentificacion" FromRole="Administrador" ToRole="CTipoIdentificacion" />
+  </EntityType>
+  <EntityType Name="CEstados">
+    <Key>
+      <PropertyRef Name="IdEstado" />
+    </Key>
+    <Property Name="IdEstado" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="Categoria" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Administrador" Relationship="Self.FK_Administrador_CEstados" FromRole="CEstados" ToRole="Administrador" />
+    <NavigationProperty Name="Clientes" Relationship="Self.FK_Clientes_CEstados" FromRole="CEstados" ToRole="Clientes" />
+    <NavigationProperty Name="Entrada" Relationship="Self.FK_Entrada_CEstados" FromRole="CEstados" ToRole="Entrada" />
+    <NavigationProperty Name="Habitaciones" Relationship="Self.FK_Habitaciones_CEstados" FromRole="CEstados" ToRole="Habitaciones" />
+    <NavigationProperty Name="Habitaciones1" Relationship="Self.FK_Habitaciones_CEstados1" FromRole="CEstados" ToRole="Habitaciones" />
+    <NavigationProperty Name="OrdenPago" Relationship="Self.FK_OrdenPago_CEstados" FromRole="CEstados" ToRole="OrdenPago" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_CEstados" FromRole="CEstados" ToRole="Productos" />
+    <NavigationProperty Name="Proveedores" Relationship="Self.FK_Proveedores_CEstados" FromRole="CEstados" ToRole="Proveedores" />
+    <NavigationProperty Name="Transacciones" Relationship="Self.FK_Transacciones_CEstados" FromRole="CEstados" ToRole="Transacciones" />
+    <NavigationProperty Name="Transacciones1" Relationship="Self.FK_Transacciones_CEstados1" FromRole="CEstados" ToRole="Transacciones" />
+  </EntityType>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="NumeroIdentificacion" />
+    </Key>
+    <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTipoIdentificacion" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NumeroIdentificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nombres" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IdEstado" Type="Int16" />
+    <NavigationProperty Name="CEstados" Relationship="Self.FK_Clientes_CEstados" FromRole="Clientes" ToRole="CEstados" />
+    <NavigationProperty Name="CTipoIdentificacion" Relationship="Self.FK_Clientes_CTipoIdentificacion" FromRole="Clientes" ToRole="CTipoIdentificacion" />
+    <NavigationProperty Name="Transacciones" Relationship="Self.FK_Transacciones_Clientes" FromRole="Clientes" ToRole="Transacciones" />
+  </EntityType>
+  <EntityType Name="CTipoHabitacion">
+    <Key>
+      <PropertyRef Name="IdTipoHabitacion" />
+    </Key>
+    <Property Name="IdTipoHabitacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Habitaciones" Relationship="Self.FK_Habitaciones_CTipoHabitacion" FromRole="CTipoHabitacion" ToRole="Habitaciones" />
+  </EntityType>
+  <EntityType Name="CTipoIdentificacion">
+    <Key>
+      <PropertyRef Name="IdTipoIdentificacion" />
+    </Key>
+    <Property Name="IdTipoIdentificacion" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Administrador" Relationship="Self.FK_Administrador_CTipoIdentificacion" FromRole="CTipoIdentificacion" ToRole="Administrador" />
+    <NavigationProperty Name="Clientes" Relationship="Self.FK_Clientes_CTipoIdentificacion" FromRole="CTipoIdentificacion" ToRole="Clientes" />
+    <NavigationProperty Name="Proveedores" Relationship="Self.FK_Proveedores_CTipoIdentificacion" FromRole="CTipoIdentificacion" ToRole="Proveedores" />
+  </EntityType>
+  <EntityType Name="DetalleEntrada">
+    <Key>
+      <PropertyRef Name="IdDetalleEntrada" />
+    </Key>
+    <Property Name="IdDetalleEntrada" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdEntrada" Type="Int32" Nullable="false" />
+    <Property Name="IdProducto" Type="Int32" Nullable="false" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Entrada" Relationship="Self.FK_DetalleEntrada_Entrada" FromRole="DetalleEntrada" ToRole="Entrada" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK_DetalleEntrada_Productos" FromRole="DetalleEntrada" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="DetalleOrdenPago">
+    <Key>
+      <PropertyRef Name="IdDetalleOrdenPago" />
+    </Key>
+    <Property Name="IdDetalleOrdenPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdOrdenPago" Type="Int32" Nullable="false" />
+    <Property Name="IdProducto" Type="Int32" Nullable="false" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="OrdenPago" Relationship="Self.FK_DetalleOrdenPago_OrdenPago" FromRole="DetalleOrdenPago" ToRole="OrdenPago" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK_DetalleOrdenPago_Productos" FromRole="DetalleOrdenPago" ToRole="Productos" />
+    <NavigationProperty Name="Productos1" Relationship="Self.FK_DetalleOrdenPago_Productos1" FromRole="DetalleOrdenPago" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="Entrada">
+    <Key>
+      <PropertyRef Name="IdEntrada" />
+    </Key>
+    <Property Name="IdEntrada" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NumeroIdentificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="IdEstado" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="CEstados" Relationship="Self.FK_Entrada_CEstados" FromRole="Entrada" ToRole="CEstados" />
+    <NavigationProperty Name="DetalleEntrada" Relationship="Self.FK_DetalleEntrada_Entrada" FromRole="Entrada" ToRole="DetalleEntrada" />
+    <NavigationProperty Name="Proveedores" Relationship="Self.FK_Entrada_Proveedores" FromRole="Entrada" ToRole="Proveedores" />
+  </EntityType>
+  <EntityType Name="Habitaciones">
+    <Key>
+      <PropertyRef Name="NumeroHabitacion" />
+    </Key>
+    <Property Name="IdHabitacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NumeroHabitacion" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdTipoHabitacion" Type="Int32" Nullable="false" />
+    <Property Name="Tarifa" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="NumeroPersonas" Type="Int32" Nullable="false" />
+    <Property Name="IdEstado" Type="Int16" Nullable="false" />
+    <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CEstados" Relationship="Self.FK_Habitaciones_CEstados" FromRole="Habitaciones" ToRole="CEstados" />
+    <NavigationProperty Name="CEstados1" Relationship="Self.FK_Habitaciones_CEstados1" FromRole="Habitaciones" ToRole="CEstados" />
+    <NavigationProperty Name="CTipoHabitacion" Relationship="Self.FK_Habitaciones_CTipoHabitacion" FromRole="Habitaciones" ToRole="CTipoHabitacion" />
+    <NavigationProperty Name="Transacciones" Relationship="Self.FK_Transacciones_Habitaciones" FromRole="Habitaciones" ToRole="Transacciones" />
+  </EntityType>
+  <EntityType Name="OrdenPago">
+    <Key>
+      <PropertyRef Name="IdOrdenPago" />
+    </Key>
+    <Property Name="IdOrdenPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="IdEstado" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="CEstados" Relationship="Self.FK_OrdenPago_CEstados" FromRole="OrdenPago" ToRole="CEstados" />
+    <NavigationProperty Name="DetalleOrdenPago" Relationship="Self.FK_DetalleOrdenPago_OrdenPago" FromRole="OrdenPago" ToRole="DetalleOrdenPago" />
+    <NavigationProperty Name="TransaccionesOrdenPago" Relationship="Self.FK_TransaccionesOrdenPago_OrdenPago" FromRole="OrdenPago" ToRole="TransaccionesOrdenPago" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="IdProducto" />
+    </Key>
+    <Property Name="IdProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NumeroIdentificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Codigo" Type="String" MaxLength="21" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Costo" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Existencia" Type="Int32" Nullable="false" />
+    <Property Name="IdEstado" Type="Int16" Nullable="false" />
+    <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CEstados" Relationship="Self.FK_Productos_CEstados" FromRole="Productos" ToRole="CEstados" />
+    <NavigationProperty Name="DetalleEntrada" Relationship="Self.FK_DetalleEntrada_Productos" FromRole="Productos" ToRole="DetalleEntrada" />
+    <NavigationProperty Name="DetalleOrdenPago" Relationship="Self.FK_DetalleOrdenPago_Productos" FromRole="Productos" ToRole="DetalleOrdenPago" />
+    <NavigationProperty Name="DetalleOrdenPago1" Relationship="Self.FK_DetalleOrdenPago_Productos1" FromRole="Productos" ToRole="DetalleOrdenPago" />
+    <NavigationProperty Name="Proveedores" Relationship="Self.FK_Productos_Proveedores" FromRole="Productos" ToRole="Proveedores" />
+  </EntityType>
+  <EntityType Name="Proveedores">
+    <Key>
+      <PropertyRef Name="NumeroIdentificacion" />
+    </Key>
+    <Property Name="IdProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RazonSocial" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="IdTipoIdentificacion" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="NumeroIdentificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="IdEstado" Type="Int16" />
+    <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CEstados" Relationship="Self.FK_Proveedores_CEstados" FromRole="Proveedores" ToRole="CEstados" />
+    <NavigationProperty Name="CTipoIdentificacion" Relationship="Self.FK_Proveedores_CTipoIdentificacion" FromRole="Proveedores" ToRole="CTipoIdentificacion" />
+    <NavigationProperty Name="Entrada" Relationship="Self.FK_Entrada_Proveedores" FromRole="Proveedores" ToRole="Entrada" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Proveedores" FromRole="Proveedores" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Transacciones">
+    <Key>
+      <PropertyRef Name="IdTransaccion" />
+    </Key>
+    <Property Name="IdTransaccion" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NumeroIdentificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NumeroHabitacion" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaHoraIngreso" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FechaHoraSalida" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TotalDias" Type="Int32" Nullable="false" />
+    <Property Name="NumeroPersonas" Type="Int32" Nullable="false" />
+    <Property Name="IdEstado" Type="Int16" Nullable="false" />
+    <Property Name="Total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="CEstados" Relationship="Self.FK_Transacciones_CEstados" FromRole="Transacciones" ToRole="CEstados" />
+    <NavigationProperty Name="CEstados1" Relationship="Self.FK_Transacciones_CEstados1" FromRole="Transacciones" ToRole="CEstados" />
+    <NavigationProperty Name="Clientes" Relationship="Self.FK_Transacciones_Clientes" FromRole="Transacciones" ToRole="Clientes" />
+    <NavigationProperty Name="Habitaciones" Relationship="Self.FK_Transacciones_Habitaciones" FromRole="Transacciones" ToRole="Habitaciones" />
+    <NavigationProperty Name="TransaccionesOrdenPago" Relationship="Self.FK_TransaccionesOrdenPago_Transacciones" FromRole="Transacciones" ToRole="TransaccionesOrdenPago" />
+  </EntityType>
+  <EntityType Name="TransaccionesOrdenPago">
+    <Key>
+      <PropertyRef Name="IdTransaccionOrdenPago" />
+    </Key>
+    <Property Name="IdTransaccionOrdenPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdOrdenPago" Type="Int32" Nullable="false" />
+    <Property Name="IdTransaccion" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="OrdenPago" Relationship="Self.FK_TransaccionesOrdenPago_OrdenPago" FromRole="TransaccionesOrdenPago" ToRole="OrdenPago" />
+    <NavigationProperty Name="Transacciones" Relationship="Self.FK_TransaccionesOrdenPago_Transacciones" FromRole="TransaccionesOrdenPago" ToRole="Transacciones" />
+  </EntityType>
+  <Association Name="FK_Administrador_CEstados">
+    <End Role="CEstados" Type="Self.CEstados" Multiplicity="0..1" />
+    <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CEstados">
+        <PropertyRef Name="IdEstado" />
+      </Principal>
+      <Dependent Role="Administrador">
+        <PropertyRef Name="IdEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Administrador_CTipoIdentificacion">
+    <End Role="CTipoIdentificacion" Type="Self.CTipoIdentificacion" Multiplicity="0..1" />
+    <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CTipoIdentificacion">
+        <PropertyRef Name="IdTipoIdentificacion" />
+      </Principal>
+      <Dependent Role="Administrador">
+        <PropertyRef Name="IdTipoIdentificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Clientes_CEstados">
+    <End Role="CEstados" Type="Self.CEstados" Multiplicity="0..1" />
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CEstados">
+        <PropertyRef Name="IdEstado" />
+      </Principal>
+      <Dependent Role="Clientes">
+        <PropertyRef Name="IdEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entrada_CEstados">
+    <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+    <End Role="Entrada" Type="Self.Entrada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CEstados">
+        <PropertyRef Name="IdEstado" />
+      </Principal>
+      <Dependent Role="Entrada">
+        <PropertyRef Name="IdEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Habitaciones_CEstados">
+    <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+    <End Role="Habitaciones" Type="Self.Habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CEstados">
+        <PropertyRef Name="IdEstado" />
+      </Principal>
+      <Dependent Role="Habitaciones">
+        <PropertyRef Name="IdEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Habitaciones_CEstados1">
+    <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+    <End Role="Habitaciones" Type="Self.Habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CEstados">
+        <PropertyRef Name="IdEstado" />
+      </Principal>
+      <Dependent Role="Habitaciones">
+        <PropertyRef Name="IdEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrdenPago_CEstados">
+    <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+    <End Role="OrdenPago" Type="Self.OrdenPago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CEstados">
+        <PropertyRef Name="IdEstado" />
+      </Principal>
+      <Dependent Role="OrdenPago">
+        <PropertyRef Name="IdEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Productos_CEstados">
+    <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+    <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CEstados">
+        <PropertyRef Name="IdEstado" />
+      </Principal>
+      <Dependent Role="Productos">
+        <PropertyRef Name="IdEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proveedores_CEstados">
+    <End Role="CEstados" Type="Self.CEstados" Multiplicity="0..1" />
+    <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CEstados">
+        <PropertyRef Name="IdEstado" />
+      </Principal>
+      <Dependent Role="Proveedores">
+        <PropertyRef Name="IdEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transacciones_CEstados">
+    <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+    <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CEstados">
+        <PropertyRef Name="IdEstado" />
+      </Principal>
+      <Dependent Role="Transacciones">
+        <PropertyRef Name="IdEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transacciones_CEstados1">
+    <End Role="CEstados" Type="Self.CEstados" Multiplicity="1" />
+    <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CEstados">
+        <PropertyRef Name="IdEstado" />
+      </Principal>
+      <Dependent Role="Transacciones">
+        <PropertyRef Name="IdEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Clientes_CTipoIdentificacion">
+    <End Role="CTipoIdentificacion" Type="Self.CTipoIdentificacion" Multiplicity="1" />
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CTipoIdentificacion">
+        <PropertyRef Name="IdTipoIdentificacion" />
+      </Principal>
+      <Dependent Role="Clientes">
+        <PropertyRef Name="IdTipoIdentificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transacciones_Clientes">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+    <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="NumeroIdentificacion" />
+      </Principal>
+      <Dependent Role="Transacciones">
+        <PropertyRef Name="NumeroIdentificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Habitaciones_CTipoHabitacion">
+    <End Role="CTipoHabitacion" Type="Self.CTipoHabitacion" Multiplicity="1" />
+    <End Role="Habitaciones" Type="Self.Habitaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CTipoHabitacion">
+        <PropertyRef Name="IdTipoHabitacion" />
+      </Principal>
+      <Dependent Role="Habitaciones">
+        <PropertyRef Name="IdTipoHabitacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proveedores_CTipoIdentificacion">
+    <End Role="CTipoIdentificacion" Type="Self.CTipoIdentificacion" Multiplicity="0..1" />
+    <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CTipoIdentificacion">
+        <PropertyRef Name="IdTipoIdentificacion" />
+      </Principal>
+      <Dependent Role="Proveedores">
+        <PropertyRef Name="IdTipoIdentificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleEntrada_Entrada">
+    <End Role="Entrada" Type="Self.Entrada" Multiplicity="1" />
+    <End Role="DetalleEntrada" Type="Self.DetalleEntrada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entrada">
+        <PropertyRef Name="IdEntrada" />
+      </Principal>
+      <Dependent Role="DetalleEntrada">
+        <PropertyRef Name="IdEntrada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleEntrada_Productos">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+    <End Role="DetalleEntrada" Type="Self.DetalleEntrada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="DetalleEntrada">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleOrdenPago_OrdenPago">
+    <End Role="OrdenPago" Type="Self.OrdenPago" Multiplicity="1" />
+    <End Role="DetalleOrdenPago" Type="Self.DetalleOrdenPago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrdenPago">
+        <PropertyRef Name="IdOrdenPago" />
+      </Principal>
+      <Dependent Role="DetalleOrdenPago">
+        <PropertyRef Name="IdOrdenPago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleOrdenPago_Productos">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+    <End Role="DetalleOrdenPago" Type="Self.DetalleOrdenPago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="DetalleOrdenPago">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleOrdenPago_Productos1">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+    <End Role="DetalleOrdenPago" Type="Self.DetalleOrdenPago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="DetalleOrdenPago">
+        <PropertyRef Name="IdOrdenPago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entrada_Proveedores">
+    <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+    <End Role="Entrada" Type="Self.Entrada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedores">
+        <PropertyRef Name="NumeroIdentificacion" />
+      </Principal>
+      <Dependent Role="Entrada">
+        <PropertyRef Name="NumeroIdentificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transacciones_Habitaciones">
+    <End Role="Habitaciones" Type="Self.Habitaciones" Multiplicity="1" />
+    <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Habitaciones">
+        <PropertyRef Name="NumeroHabitacion" />
+      </Principal>
+      <Dependent Role="Transacciones">
+        <PropertyRef Name="NumeroHabitacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransaccionesOrdenPago_OrdenPago">
+    <End Role="OrdenPago" Type="Self.OrdenPago" Multiplicity="1" />
+    <End Role="TransaccionesOrdenPago" Type="Self.TransaccionesOrdenPago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrdenPago">
+        <PropertyRef Name="IdOrdenPago" />
+      </Principal>
+      <Dependent Role="TransaccionesOrdenPago">
+        <PropertyRef Name="IdOrdenPago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Productos_Proveedores">
+    <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+    <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedores">
+        <PropertyRef Name="NumeroIdentificacion" />
+      </Principal>
+      <Dependent Role="Productos">
+        <PropertyRef Name="NumeroIdentificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransaccionesOrdenPago_Transacciones">
+    <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="1" />
+    <End Role="TransaccionesOrdenPago" Type="Self.TransaccionesOrdenPago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transacciones">
+        <PropertyRef Name="IdTransaccion" />
+      </Principal>
+      <Dependent Role="TransaccionesOrdenPago">
+        <PropertyRef Name="IdTransaccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Conexion" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Administrador" EntityType="Self.Administrador" />
+    <EntitySet Name="CEstados" EntityType="Self.CEstados" />
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+    <EntitySet Name="CTipoHabitacion" EntityType="Self.CTipoHabitacion" />
+    <EntitySet Name="CTipoIdentificacion" EntityType="Self.CTipoIdentificacion" />
+    <EntitySet Name="DetalleEntrada" EntityType="Self.DetalleEntrada" />
+    <EntitySet Name="DetalleOrdenPago" EntityType="Self.DetalleOrdenPago" />
+    <EntitySet Name="Entrada" EntityType="Self.Entrada" />
+    <EntitySet Name="Habitaciones" EntityType="Self.Habitaciones" />
+    <EntitySet Name="OrdenPago" EntityType="Self.OrdenPago" />
+    <EntitySet Name="Productos" EntityType="Self.Productos" />
+    <EntitySet Name="Proveedores" EntityType="Self.Proveedores" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Transacciones" EntityType="Self.Transacciones" />
+    <EntitySet Name="TransaccionesOrdenPago" EntityType="Self.TransaccionesOrdenPago" />
+    <AssociationSet Name="FK_Administrador_CEstados" Association="Self.FK_Administrador_CEstados">
+      <End Role="CEstados" EntitySet="CEstados" />
+      <End Role="Administrador" EntitySet="Administrador" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Administrador_CTipoIdentificacion" Association="Self.FK_Administrador_CTipoIdentificacion">
+      <End Role="CTipoIdentificacion" EntitySet="CTipoIdentificacion" />
+      <End Role="Administrador" EntitySet="Administrador" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Clientes_CEstados" Association="Self.FK_Clientes_CEstados">
+      <End Role="CEstados" EntitySet="CEstados" />
+      <End Role="Clientes" EntitySet="Clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entrada_CEstados" Association="Self.FK_Entrada_CEstados">
+      <End Role="CEstados" EntitySet="CEstados" />
+      <End Role="Entrada" EntitySet="Entrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Habitaciones_CEstados" Association="Self.FK_Habitaciones_CEstados">
+      <End Role="CEstados" EntitySet="CEstados" />
+      <End Role="Habitaciones" EntitySet="Habitaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Habitaciones_CEstados1" Association="Self.FK_Habitaciones_CEstados1">
+      <End Role="CEstados" EntitySet="CEstados" />
+      <End Role="Habitaciones" EntitySet="Habitaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrdenPago_CEstados" Association="Self.FK_OrdenPago_CEstados">
+      <End Role="CEstados" EntitySet="CEstados" />
+      <End Role="OrdenPago" EntitySet="OrdenPago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Productos_CEstados" Association="Self.FK_Productos_CEstados">
+      <End Role="CEstados" EntitySet="CEstados" />
+      <End Role="Productos" EntitySet="Productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proveedores_CEstados" Association="Self.FK_Proveedores_CEstados">
+      <End Role="CEstados" EntitySet="CEstados" />
+      <End Role="Proveedores" EntitySet="Proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transacciones_CEstados" Association="Self.FK_Transacciones_CEstados">
+      <End Role="CEstados" EntitySet="CEstados" />
+      <End Role="Transacciones" EntitySet="Transacciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transacciones_CEstados1" Association="Self.FK_Transacciones_CEstados1">
+      <End Role="CEstados" EntitySet="CEstados" />
+      <End Role="Transacciones" EntitySet="Transacciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Clientes_CTipoIdentificacion" Association="Self.FK_Clientes_CTipoIdentificacion">
+      <End Role="CTipoIdentificacion" EntitySet="CTipoIdentificacion" />
+      <End Role="Clientes" EntitySet="Clientes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transacciones_Clientes" Association="Self.FK_Transacciones_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Transacciones" EntitySet="Transacciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Habitaciones_CTipoHabitacion" Association="Self.FK_Habitaciones_CTipoHabitacion">
+      <End Role="CTipoHabitacion" EntitySet="CTipoHabitacion" />
+      <End Role="Habitaciones" EntitySet="Habitaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proveedores_CTipoIdentificacion" Association="Self.FK_Proveedores_CTipoIdentificacion">
+      <End Role="CTipoIdentificacion" EntitySet="CTipoIdentificacion" />
+      <End Role="Proveedores" EntitySet="Proveedores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleEntrada_Entrada" Association="Self.FK_DetalleEntrada_Entrada">
+      <End Role="Entrada" EntitySet="Entrada" />
+      <End Role="DetalleEntrada" EntitySet="DetalleEntrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleEntrada_Productos" Association="Self.FK_DetalleEntrada_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="DetalleEntrada" EntitySet="DetalleEntrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleOrdenPago_OrdenPago" Association="Self.FK_DetalleOrdenPago_OrdenPago">
+      <End Role="OrdenPago" EntitySet="OrdenPago" />
+      <End Role="DetalleOrdenPago" EntitySet="DetalleOrdenPago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleOrdenPago_Productos" Association="Self.FK_DetalleOrdenPago_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="DetalleOrdenPago" EntitySet="DetalleOrdenPago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleOrdenPago_Productos1" Association="Self.FK_DetalleOrdenPago_Productos1">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="DetalleOrdenPago" EntitySet="DetalleOrdenPago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entrada_Proveedores" Association="Self.FK_Entrada_Proveedores">
+      <End Role="Proveedores" EntitySet="Proveedores" />
+      <End Role="Entrada" EntitySet="Entrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transacciones_Habitaciones" Association="Self.FK_Transacciones_Habitaciones">
+      <End Role="Habitaciones" EntitySet="Habitaciones" />
+      <End Role="Transacciones" EntitySet="Transacciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransaccionesOrdenPago_OrdenPago" Association="Self.FK_TransaccionesOrdenPago_OrdenPago">
+      <End Role="OrdenPago" EntitySet="OrdenPago" />
+      <End Role="TransaccionesOrdenPago" EntitySet="TransaccionesOrdenPago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Productos_Proveedores" Association="Self.FK_Productos_Proveedores">
+      <End Role="Proveedores" EntitySet="Proveedores" />
+      <End Role="Productos" EntitySet="Productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransaccionesOrdenPago_Transacciones" Association="Self.FK_TransaccionesOrdenPago_Transacciones">
+      <End Role="Transacciones" EntitySet="Transacciones" />
+      <End Role="TransaccionesOrdenPago" EntitySet="TransaccionesOrdenPago" />
+    </AssociationSet>
+    <FunctionImport Name="CrearCliente">
+      <Parameter Name="NumeroIdenticacion" Mode="In" Type="String" />
+      <Parameter Name="TipoIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="Nombres" Mode="In" Type="String" />
+      <Parameter Name="Apellidos" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ModeloHotel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ModeloHotel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="SPAdministradorInsert">
+      <Parameter Name="IdTipoIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="Nombres" Mode="In" Type="String" />
+      <Parameter Name="Apellidos" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="User" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+      <Parameter Name="Observacion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPAdministradorSelect" ReturnType="Collection(ModeloHotel.SPAdministradorSelect_Result)" />
+    <FunctionImport Name="SPAdministradorSelectDocumento" ReturnType="Collection(ModeloHotel.SPAdministradorSelectDocumento_Result)">
+      <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPAdministradorUpdate">
+      <Parameter Name="IdAdministrador" Mode="In" Type="Int32" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="User" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+      <Parameter Name="Observaciones" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPClienteFind" ReturnType="Collection(ModeloHotel.SPClienteFind_Result)">
+      <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPClienteInsert">
+      <Parameter Name="IdTipoIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="Nombres" Mode="In" Type="String" />
+      <Parameter Name="Apellidos" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="Observaciones" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPClienteSelect" ReturnType="Collection(ModeloHotel.SPClienteSelect_Result)" />
+    <FunctionImport Name="SPClienteSelectPorDocumento" ReturnType="Collection(ModeloHotel.SPClienteSelectPorDocumento_Result)">
+      <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPClienteUpdate">
+      <Parameter Name="IdCliente" Mode="In" Type="Int32" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+      <Parameter Name="Observaciones" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPCTipoHabitacionInsert">
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPCTipoIdentificacionInsert">
+      <Parameter Name="IdTipoIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPDetalleEntradaDeletePorId">
+      <Parameter Name="IdDetalleEntrada" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPDetalleEntradaInsert">
+      <Parameter Name="IdEntrada" Mode="In" Type="Int32" />
+      <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPDetalleOrdenPagoDeletePorId">
+      <Parameter Name="IdDetalleOrdenPago" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPDetalleOrdenPagoInsert">
+      <Parameter Name="IdOrdenPago" Mode="In" Type="Int32" />
+      <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPEntradaInsert">
+      <Parameter Name="FechaHora" Mode="In" Type="DateTime" />
+      <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="Total" Mode="In" Type="Decimal" />
+      <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="SPEstadosAdministradorSelect" ReturnType="Collection(ModeloHotel.SPEstadosAdministradorSelect_Result)" />
+    <FunctionImport Name="SPEstadosDeletePorId">
+      <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="SPEstadosHabitacionSelect" ReturnType="Collection(ModeloHotel.SPEstadosHabitacionSelect_Result)" />
+    <FunctionImport Name="SPEstadosInsert">
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Categoria" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPEstadosSelect" ReturnType="Collection(ModeloHotel.SPEstadosSelect_Result)" />
+    <FunctionImport Name="SPEstadosUpdate">
+      <Parameter Name="IdEstado" Mode="In" Type="Int32" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Categoria" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPHabitacionDeletePorId">
+      <Parameter Name="IdHabitacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPHabitacionesInsert">
+      <Parameter Name="NumeroHabitacion" Mode="In" Type="String" />
+      <Parameter Name="IdTipoHabitacion" Mode="In" Type="Int32" />
+      <Parameter Name="Tarifa" Mode="In" Type="Decimal" />
+      <Parameter Name="NumeroPersonas" Mode="In" Type="Int32" />
+      <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+      <Parameter Name="Observaciones" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPHabitacionSelect" ReturnType="Collection(ModeloHotel.SPHabitacionSelect_Result)" />
+    <FunctionImport Name="SPHabitacionSelectPorHabitacion" ReturnType="Collection(ModeloHotel.SPHabitacionSelectPorHabitacion_Result)">
+      <Parameter Name="NumeroHabitacion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPHabitacionUpdate">
+      <Parameter Name="NumeroHabitacion" Mode="In" Type="String" />
+      <Parameter Name="IdTipoHabitacion" Mode="In" Type="Int32" />
+      <Parameter Name="Tarifa" Mode="In" Type="Decimal" />
+      <Parameter Name="NumeroPersonas" Mode="In" Type="Int32" />
+      <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+      <Parameter Name="Observaciones" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPOrdenPagoInsert">
+      <Parameter Name="FechaHora" Mode="In" Type="DateTime" />
+      <Parameter Name="Total" Mode="In" Type="Decimal" />
+      <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="SPProductoFind" ReturnType="Collection(ModeloHotel.SPProductoFind_Result)">
+      <Parameter Name="Codigo" Mode="In" Type="String" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPProductoSelectPorCodigo" ReturnType="Collection(ModeloHotel.SPProductoSelectPorCodigo_Result)">
+      <Parameter Name="Codigo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPProductosSelect" ReturnType="Collection(ModeloHotel.SPProductosSelect_Result)" />
+    <FunctionImport Name="SPProductosUpdate">
+      <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+      <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Codigo" Mode="In" Type="String" />
+      <Parameter Name="Precio" Mode="In" Type="Decimal" />
+      <Parameter Name="Costo" Mode="In" Type="Decimal" />
+      <Parameter Name="Existencia" Mode="In" Type="Int32" />
+      <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+      <Parameter Name="Observaciones" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPProveedoresDeletePorId">
+      <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPProveedoresFind" ReturnType="Collection(ModeloHotel.SPProveedoresFind_Result)">
+      <Parameter Name="RazonSocial" Mode="In" Type="String" />
+      <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPProveedoresInsert">
+      <Parameter Name="RazonSocial" Mode="In" Type="String" />
+      <Parameter Name="IdTipoIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+      <Parameter Name="Observaciones" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPProveedoresSelect" ReturnType="Collection(ModeloHotel.SPProveedoresSelect_Result)" />
+    <FunctionImport Name="SPProveedoresSelectPorDocumento" ReturnType="Collection(ModeloHotel.SPProveedoresSelectPorDocumento_Result)">
+      <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPProveedoresUpdate">
+      <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+      <Parameter Name="Observaciones" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPTipoHabitacionDeletePorId">
+      <Parameter Name="IdTipoHabitacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPTipoHabitacionSelect" ReturnType="Collection(ModeloHotel.SPTipoHabitacionSelect_Result)" />
+    <FunctionImport Name="SPTipoIdentificacionDeletePorId">
+      <Parameter Name="IdTipoIdentificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SPTipoIdentificacionSelect" ReturnType="Collection(ModeloHotel.SPTipoIdentificacionSelect_Result)" />
+    <FunctionImport Name="SPTransaccionesInsert">
+      <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="NumeroHabitacion" Mode="In" Type="String" />
+      <Parameter Name="FechaHoraIngreso" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaHoraSalida" Mode="In" Type="DateTime" />
+      <Parameter Name="TotalDias" Mode="In" Type="Int32" />
+      <Parameter Name="NumeroPersonas" Mode="In" Type="Int32" />
+      <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+      <Parameter Name="Total" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SPTransaccionesOrdePagoInsert">
+      <Parameter Name="IdOrdenPago" Mode="In" Type="Int32" />
+      <Parameter Name="IdTransaccion" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="ValidarLogin">
+      <Parameter Name="User" Mode="In" Type="String" />
+      <Parameter Name="Pass" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SPAdministradorSelect_Result">
+    <Property Type="Int32" Name="IdAdministrador" Nullable="false" />
+    <Property Type="String" Name="IdTipoIdentificacion" Nullable="true" MaxLength="3" />
+    <Property Type="String" Name="NumeroIdentificacion" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Nombres" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Telefono" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Correo" Nullable="false" MaxLength="255" />
+    <Property Type="Int16" Name="IdEstado" Nullable="true" />
+    <Property Type="String" Name="Observaciones" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SPAdministradorSelectDocumento_Result">
+    <Property Type="Int32" Name="IdAdministrador" Nullable="false" />
+    <Property Type="String" Name="IdTipoIdentificacion" Nullable="true" MaxLength="3" />
+    <Property Type="String" Name="NumeroIdentificacion" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Nombres" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Telefono" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Correo" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="User" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="16" />
+    <Property Type="Int16" Name="IdEstado" Nullable="true" />
+    <Property Type="String" Name="Observaciones" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SPClienteFind_Result">
+    <Property Type="Int32" Name="IdCliente" Nullable="false" />
+    <Property Type="String" Name="IdTipoIdentificacion" Nullable="false" MaxLength="3" />
+    <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Nombres" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Telefono" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Observaciones" Nullable="true" />
+    <Property Type="Int16" Name="IdEstado" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SPClienteSelect_Result">
+    <Property Type="String" Name="IdTipoIdentificacion" Nullable="false" MaxLength="3" />
+    <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Nombres" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Telefono" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Estado" Nullable="true" MaxLength="32" />
+    <Property Type="String" Name="Observaciones" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SPClienteSelectPorDocumento_Result">
+    <Property Type="Int32" Name="IdCliente" Nullable="false" />
+    <Property Type="String" Name="IdTipoIdentificacion" Nullable="false" MaxLength="3" />
+    <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Nombres" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Telefono" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Observaciones" Nullable="true" />
+    <Property Type="Int16" Name="IdEstado" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SPEstadosAdministradorSelect_Result">
+    <Property Type="Int16" Name="IdEstado" Nullable="false" />
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="32" />
+  </ComplexType>
+  <ComplexType Name="SPEstadosHabitacionSelect_Result">
+    <Property Type="Int16" Name="IdEstado" Nullable="false" />
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="32" />
+  </ComplexType>
+  <ComplexType Name="SPEstadosSelect_Result">
+    <Property Type="Int16" Name="IdEstado" Nullable="false" />
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="32" />
+    <Property Type="String" Name="Categoria" Nullable="true" MaxLength="16" />
+  </ComplexType>
+  <ComplexType Name="SPHabitacionSelect_Result">
+    <Property Type="Int32" Name="IdHabitacion" Nullable="false" />
+    <Property Type="String" Name="NumeroHabitacion" Nullable="false" MaxLength="5" />
+    <Property Type="Int32" Name="IdTipoHabitacion" Nullable="false" />
+    <Property Type="Decimal" Name="Tarifa" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="NumeroPersonas" Nullable="false" />
+    <Property Type="Int16" Name="IdEstado" Nullable="false" />
+    <Property Type="String" Name="Observaciones" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SPHabitacionSelectPorHabitacion_Result">
+    <Property Type="String" Name="NumeroHabitacion" Nullable="false" MaxLength="5" />
+    <Property Type="Int32" Name="IdTipoHabitacion" Nullable="false" />
+    <Property Type="Decimal" Name="Tarifa" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="NumeroPersonas" Nullable="false" />
+    <Property Type="Int16" Name="IdEstado" Nullable="false" />
+    <Property Type="String" Name="Observaciones" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SPProductoFind_Result">
+    <Property Type="Int32" Name="IdProducto" Nullable="false" />
+    <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="Codigo" Nullable="false" MaxLength="21" />
+    <Property Type="Decimal" Name="Precio" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="Costo" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="Existencia" Nullable="false" />
+    <Property Type="Int16" Name="IdEstado" Nullable="false" />
+    <Property Type="String" Name="Observaciones" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SPProductoSelectPorCodigo_Result">
+    <Property Type="Int32" Name="IdProducto" Nullable="false" />
+    <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="Codigo" Nullable="false" MaxLength="21" />
+    <Property Type="Decimal" Name="Precio" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="Costo" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="Existencia" Nullable="false" />
+    <Property Type="Int16" Name="IdEstado" Nullable="false" />
+    <Property Type="String" Name="Observaciones" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SPProductosSelect_Result">
+    <Property Type="Int32" Name="IdProducto" Nullable="false" />
+    <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="Codigo" Nullable="false" MaxLength="21" />
+    <Property Type="Decimal" Name="Precio" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="Costo" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="Existencia" Nullable="false" />
+    <Property Type="Int16" Name="IdEstado" Nullable="false" />
+    <Property Type="String" Name="Observaciones" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SPProveedoresFind_Result">
+    <Property Type="Int32" Name="IdProveedor" Nullable="false" />
+    <Property Type="String" Name="RazonSocial" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="IdTipoIdentificacion" Nullable="true" MaxLength="3" />
+    <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Direccion" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="255" />
+    <Property Type="Int16" Name="IdEstado" Nullable="true" />
+    <Property Type="String" Name="Observaciones" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SPProveedoresSelect_Result">
+    <Property Type="Int32" Name="IdProveedor" Nullable="false" />
+    <Property Type="String" Name="RazonSocial" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="IdTipoIdentificacion" Nullable="true" MaxLength="3" />
+    <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Direccion" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="255" />
+    <Property Type="Int16" Name="IdEstado" Nullable="true" />
+    <Property Type="String" Name="Observaciones" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SPProveedoresSelectPorDocumento_Result">
+    <Property Type="Int32" Name="IdProveedor" Nullable="false" />
+    <Property Type="String" Name="RazonSocial" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="IdTipoIdentificacion" Nullable="true" MaxLength="3" />
+    <Property Type="String" Name="NumeroIdentificacion" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Direccion" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="255" />
+    <Property Type="Int16" Name="IdEstado" Nullable="true" />
+    <Property Type="String" Name="Observaciones" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SPTipoHabitacionSelect_Result">
+    <Property Type="Int32" Name="IdTipoHabitacion" Nullable="false" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="32" />
+  </ComplexType>
+  <ComplexType Name="SPTipoIdentificacionSelect_Result">
+    <Property Type="String" Name="IdTipoIdentificacion" Nullable="false" MaxLength="3" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="32" />
+  </ComplexType>
+</Schema>

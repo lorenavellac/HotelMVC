@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d47bf1ac2ac341d3a14bc16cbb557cd8" Name="Diagram1">
+        <EntityTypeShape EntityType="ModeloHotel.Administrador" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloHotel.CEstados" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloHotel.Clientes" Width="1.5" PointX="6" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloHotel.CTipoHabitacion" Width="1.5" PointX="3.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloHotel.CTipoIdentificacion" Width="1.5" PointX="3.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloHotel.DetalleEntrada" Width="1.5" PointX="8.25" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloHotel.DetalleOrdenPago" Width="1.5" PointX="5.25" PointY="30" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloHotel.Entrada" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloHotel.Habitaciones" Width="1.5" PointX="6" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloHotel.OrdenPago" Width="1.5" PointX="3" PointY="30" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloHotel.Productos" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloHotel.Proveedores" Width="1.5" PointX="6" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloHotel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloHotel.Transacciones" Width="1.5" PointX="8.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModeloHotel.TransaccionesOrdenPago" Width="1.5" PointX="10.5" PointY="20.625" IsExpanded="true" />
+        <AssociationConnector Association="ModeloHotel.FK_Administrador_CEstados" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_Administrador_CTipoIdentificacion" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_Clientes_CEstados" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_Entrada_CEstados" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_Habitaciones_CEstados" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_Habitaciones_CEstados1" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_OrdenPago_CEstados" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_Productos_CEstados" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_Proveedores_CEstados" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_Transacciones_CEstados" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_Transacciones_CEstados1" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_Clientes_CTipoIdentificacion" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_Transacciones_Clientes" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_Habitaciones_CTipoHabitacion" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_Proveedores_CTipoIdentificacion" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_DetalleEntrada_Entrada" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_DetalleEntrada_Productos" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_DetalleOrdenPago_OrdenPago" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_DetalleOrdenPago_Productos" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_DetalleOrdenPago_Productos1" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_Entrada_Proveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_Transacciones_Habitaciones" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_TransaccionesOrdenPago_OrdenPago" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_Productos_Proveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_TransaccionesOrdenPago_Transacciones" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

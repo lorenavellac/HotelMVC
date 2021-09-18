@@ -1,0 +1,30 @@
+﻿@model IEnumerable<HotelMVC.Models.CTipoHabitacion>
+
+@{
+    ViewBag.Title = "Tipo Habitación";
+}
+
+<h2>Tipo Habitación</h2>
+
+<p>
+    @Html.ActionLink("Crear Nueva", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Descripción</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdTipoHabitacion }) |          
+            @Html.ActionLink("Borrar", "Delete", new { id=item.IdTipoHabitacion })
+        </td>
+    </tr>
+}
+
+</table>

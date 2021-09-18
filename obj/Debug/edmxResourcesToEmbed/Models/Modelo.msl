@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModeloHotelStoreContainer" CdmEntityContainer="Conexion">
+    <EntitySetMapping Name="Administrador">
+      <EntityTypeMapping TypeName="ModeloHotel.Administrador">
+        <MappingFragment StoreEntitySet="Administrador">
+          <ScalarProperty Name="IdAdministrador" ColumnName="IdAdministrador" />
+          <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+          <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CEstados">
+      <EntityTypeMapping TypeName="ModeloHotel.CEstados">
+        <MappingFragment StoreEntitySet="CEstados">
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="ModeloHotel.Clientes">
+        <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+          <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CTipoHabitacion">
+      <EntityTypeMapping TypeName="ModeloHotel.CTipoHabitacion">
+        <MappingFragment StoreEntitySet="CTipoHabitacion">
+          <ScalarProperty Name="IdTipoHabitacion" ColumnName="IdTipoHabitacion" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CTipoIdentificacion">
+      <EntityTypeMapping TypeName="ModeloHotel.CTipoIdentificacion">
+        <MappingFragment StoreEntitySet="CTipoIdentificacion">
+          <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetalleEntrada">
+      <EntityTypeMapping TypeName="ModeloHotel.DetalleEntrada">
+        <MappingFragment StoreEntitySet="DetalleEntrada">
+          <ScalarProperty Name="IdDetalleEntrada" ColumnName="IdDetalleEntrada" />
+          <ScalarProperty Name="IdEntrada" ColumnName="IdEntrada" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetalleOrdenPago">
+      <EntityTypeMapping TypeName="ModeloHotel.DetalleOrdenPago">
+        <MappingFragment StoreEntitySet="DetalleOrdenPago">
+          <ScalarProperty Name="IdDetalleOrdenPago" ColumnName="IdDetalleOrdenPago" />
+          <ScalarProperty Name="IdOrdenPago" ColumnName="IdOrdenPago" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Entrada">
+      <EntityTypeMapping TypeName="ModeloHotel.Entrada">
+        <MappingFragment StoreEntitySet="Entrada">
+          <ScalarProperty Name="IdEntrada" ColumnName="IdEntrada" />
+          <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+          <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Habitaciones">
+      <EntityTypeMapping TypeName="ModeloHotel.Habitaciones">
+        <MappingFragment StoreEntitySet="Habitaciones">
+          <ScalarProperty Name="IdHabitacion" ColumnName="IdHabitacion" />
+          <ScalarProperty Name="NumeroHabitacion" ColumnName="NumeroHabitacion" />
+          <ScalarProperty Name="IdTipoHabitacion" ColumnName="IdTipoHabitacion" />
+          <ScalarProperty Name="Tarifa" ColumnName="Tarifa" />
+          <ScalarProperty Name="NumeroPersonas" ColumnName="NumeroPersonas" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrdenPago">
+      <EntityTypeMapping TypeName="ModeloHotel.OrdenPago">
+        <MappingFragment StoreEntitySet="OrdenPago">
+          <ScalarProperty Name="IdOrdenPago" ColumnName="IdOrdenPago" />
+          <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Productos">
+      <EntityTypeMapping TypeName="ModeloHotel.Productos">
+        <MappingFragment StoreEntitySet="Productos">
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+          <ScalarProperty Name="Existencia" ColumnName="Existencia" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proveedores">
+      <EntityTypeMapping TypeName="ModeloHotel.Proveedores">
+        <MappingFragment StoreEntitySet="Proveedores">
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+          <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+          <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ModeloHotel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transacciones">
+      <EntityTypeMapping TypeName="ModeloHotel.Transacciones">
+        <MappingFragment StoreEntitySet="Transacciones">
+          <ScalarProperty Name="IdTransaccion" ColumnName="IdTransaccion" />
+          <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+          <ScalarProperty Name="NumeroHabitacion" ColumnName="NumeroHabitacion" />
+          <ScalarProperty Name="FechaHoraIngreso" ColumnName="FechaHoraIngreso" />
+          <ScalarProperty Name="FechaHoraSalida" ColumnName="FechaHoraSalida" />
+          <ScalarProperty Name="TotalDias" ColumnName="TotalDias" />
+          <ScalarProperty Name="NumeroPersonas" ColumnName="NumeroPersonas" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransaccionesOrdenPago">
+      <EntityTypeMapping TypeName="ModeloHotel.TransaccionesOrdenPago">
+        <MappingFragment StoreEntitySet="TransaccionesOrdenPago">
+          <ScalarProperty Name="IdTransaccionOrdenPago" ColumnName="IdTransaccionOrdenPago" />
+          <ScalarProperty Name="IdOrdenPago" ColumnName="IdOrdenPago" />
+          <ScalarProperty Name="IdTransaccion" ColumnName="IdTransaccion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CrearCliente" FunctionName="ModeloHotel.Store.CrearCliente" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ModeloHotel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ModeloHotel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ModeloHotel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ModeloHotel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ModeloHotel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ModeloHotel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ModeloHotel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="SPAdministradorInsert" FunctionName="ModeloHotel.Store.SPAdministradorInsert" />
+    <FunctionImportMapping FunctionImportName="SPAdministradorSelect" FunctionName="ModeloHotel.Store.SPAdministradorSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPAdministradorSelect_Result">
+          <ScalarProperty Name="IdAdministrador" ColumnName="IdAdministrador" />
+          <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+          <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPAdministradorSelectDocumento" FunctionName="ModeloHotel.Store.SPAdministradorSelectDocumento">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPAdministradorSelectDocumento_Result">
+          <ScalarProperty Name="IdAdministrador" ColumnName="IdAdministrador" />
+          <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+          <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPAdministradorUpdate" FunctionName="ModeloHotel.Store.SPAdministradorUpdate" />
+    <FunctionImportMapping FunctionImportName="SPClienteFind" FunctionName="ModeloHotel.Store.SPClienteFind">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPClienteFind_Result">
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+          <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPClienteInsert" FunctionName="ModeloHotel.Store.SPClienteInsert" />
+    <FunctionImportMapping FunctionImportName="SPClienteSelect" FunctionName="ModeloHotel.Store.SPClienteSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPClienteSelect_Result">
+          <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+          <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPClienteSelectPorDocumento" FunctionName="ModeloHotel.Store.SPClienteSelectPorDocumento">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPClienteSelectPorDocumento_Result">
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+          <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPClienteUpdate" FunctionName="ModeloHotel.Store.SPClienteUpdate" />
+    <FunctionImportMapping FunctionImportName="SPCTipoHabitacionInsert" FunctionName="ModeloHotel.Store.SPCTipoHabitacionInsert" />
+    <FunctionImportMapping FunctionImportName="SPCTipoIdentificacionInsert" FunctionName="ModeloHotel.Store.SPCTipoIdentificacionInsert" />
+    <FunctionImportMapping FunctionImportName="SPDetalleEntradaDeletePorId" FunctionName="ModeloHotel.Store.SPDetalleEntradaDeletePorId" />
+    <FunctionImportMapping FunctionImportName="SPDetalleEntradaInsert" FunctionName="ModeloHotel.Store.SPDetalleEntradaInsert" />
+    <FunctionImportMapping FunctionImportName="SPDetalleOrdenPagoDeletePorId" FunctionName="ModeloHotel.Store.SPDetalleOrdenPagoDeletePorId" />
+    <FunctionImportMapping FunctionImportName="SPDetalleOrdenPagoInsert" FunctionName="ModeloHotel.Store.SPDetalleOrdenPagoInsert" />
+    <FunctionImportMapping FunctionImportName="SPEntradaInsert" FunctionName="ModeloHotel.Store.SPEntradaInsert" />
+    <FunctionImportMapping FunctionImportName="SPEstadosAdministradorSelect" FunctionName="ModeloHotel.Store.SPEstadosAdministradorSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPEstadosAdministradorSelect_Result">
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPEstadosDeletePorId" FunctionName="ModeloHotel.Store.SPEstadosDeletePorId" />
+    <FunctionImportMapping FunctionImportName="SPEstadosHabitacionSelect" FunctionName="ModeloHotel.Store.SPEstadosHabitacionSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPEstadosHabitacionSelect_Result">
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPEstadosInsert" FunctionName="ModeloHotel.Store.SPEstadosInsert" />
+    <FunctionImportMapping FunctionImportName="SPEstadosSelect" FunctionName="ModeloHotel.Store.SPEstadosSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPEstadosSelect_Result">
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPEstadosUpdate" FunctionName="ModeloHotel.Store.SPEstadosUpdate" />
+    <FunctionImportMapping FunctionImportName="SPHabitacionDeletePorId" FunctionName="ModeloHotel.Store.SPHabitacionDeletePorId" />
+    <FunctionImportMapping FunctionImportName="SPHabitacionesInsert" FunctionName="ModeloHotel.Store.SPHabitacionesInsert" />
+    <FunctionImportMapping FunctionImportName="SPHabitacionSelect" FunctionName="ModeloHotel.Store.SPHabitacionSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPHabitacionSelect_Result">
+          <ScalarProperty Name="IdHabitacion" ColumnName="IdHabitacion" />
+          <ScalarProperty Name="NumeroHabitacion" ColumnName="NumeroHabitacion" />
+          <ScalarProperty Name="IdTipoHabitacion" ColumnName="IdTipoHabitacion" />
+          <ScalarProperty Name="Tarifa" ColumnName="Tarifa" />
+          <ScalarProperty Name="NumeroPersonas" ColumnName="NumeroPersonas" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPHabitacionSelectPorHabitacion" FunctionName="ModeloHotel.Store.SPHabitacionSelectPorHabitacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPHabitacionSelectPorHabitacion_Result">
+          <ScalarProperty Name="NumeroHabitacion" ColumnName="NumeroHabitacion" />
+          <ScalarProperty Name="IdTipoHabitacion" ColumnName="IdTipoHabitacion" />
+          <ScalarProperty Name="Tarifa" ColumnName="Tarifa" />
+          <ScalarProperty Name="NumeroPersonas" ColumnName="NumeroPersonas" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPHabitacionUpdate" FunctionName="ModeloHotel.Store.SPHabitacionUpdate" />
+    <FunctionImportMapping FunctionImportName="SPOrdenPagoInsert" FunctionName="ModeloHotel.Store.SPOrdenPagoInsert" />
+    <FunctionImportMapping FunctionImportName="SPProductoFind" FunctionName="ModeloHotel.Store.SPProductoFind">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPProductoFind_Result">
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+          <ScalarProperty Name="Existencia" ColumnName="Existencia" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPProductoSelectPorCodigo" FunctionName="ModeloHotel.Store.SPProductoSelectPorCodigo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPProductoSelectPorCodigo_Result">
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+          <ScalarProperty Name="Existencia" ColumnName="Existencia" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPProductosSelect" FunctionName="ModeloHotel.Store.SPProductosSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPProductosSelect_Result">
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+          <ScalarProperty Name="Existencia" ColumnName="Existencia" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPProductosUpdate" FunctionName="ModeloHotel.Store.SPProductosUpdate" />
+    <FunctionImportMapping FunctionImportName="SPProveedoresDeletePorId" FunctionName="ModeloHotel.Store.SPProveedoresDeletePorId" />
+    <FunctionImportMapping FunctionImportName="SPProveedoresFind" FunctionName="ModeloHotel.Store.SPProveedoresFind">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPProveedoresFind_Result">
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+          <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+          <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPProveedoresInsert" FunctionName="ModeloHotel.Store.SPProveedoresInsert" />
+    <FunctionImportMapping FunctionImportName="SPProveedoresSelect" FunctionName="ModeloHotel.Store.SPProveedoresSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPProveedoresSelect_Result">
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+          <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+          <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPProveedoresSelectPorDocumento" FunctionName="ModeloHotel.Store.SPProveedoresSelectPorDocumento">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPProveedoresSelectPorDocumento_Result">
+          <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+          <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+          <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPProveedoresUpdate" FunctionName="ModeloHotel.Store.SPProveedoresUpdate" />
+    <FunctionImportMapping FunctionImportName="SPTipoHabitacionDeletePorId" FunctionName="ModeloHotel.Store.SPTipoHabitacionDeletePorId" />
+    <FunctionImportMapping FunctionImportName="SPTipoHabitacionSelect" FunctionName="ModeloHotel.Store.SPTipoHabitacionSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPTipoHabitacionSelect_Result">
+          <ScalarProperty Name="IdTipoHabitacion" ColumnName="IdTipoHabitacion" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPTipoIdentificacionDeletePorId" FunctionName="ModeloHotel.Store.SPTipoIdentificacionDeletePorId" />
+    <FunctionImportMapping FunctionImportName="SPTipoIdentificacionSelect" FunctionName="ModeloHotel.Store.SPTipoIdentificacionSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ModeloHotel.SPTipoIdentificacionSelect_Result">
+          <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPTransaccionesInsert" FunctionName="ModeloHotel.Store.SPTransaccionesInsert" />
+    <FunctionImportMapping FunctionImportName="SPTransaccionesOrdePagoInsert" FunctionName="ModeloHotel.Store.SPTransaccionesOrdePagoInsert" />
+    <FunctionImportMapping FunctionImportName="ValidarLogin" FunctionName="ModeloHotel.Store.ValidarLogin" />
+  </EntityContainerMapping>
+</Mapping>

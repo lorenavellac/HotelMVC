@@ -1,0 +1,105 @@
+﻿@model HotelMVC.Models.Administrador
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar Administrador</h2>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Tipo Id.
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CTipoIdentificacion.Descripcion)
+        </dd>
+        <dt>
+            Nro. Identificación
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroIdentificacion)
+        </dd>
+
+        <dt>
+            Nombres
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombres)
+        </dd>
+
+        <dt>
+            Apellidos
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellidos)
+        </dd>
+
+        <dt>
+            Teléfono
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            Correo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Correo)
+        </dd>
+
+        <dt>
+            User
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User)
+        </dd>
+
+        <dt>
+            Password
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            Observaciones
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+
+        <dt>
+            Estado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CEstados.Descripcion)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+
+<div class="form-actions no-color">
+    <button class="btn" title="Regresar" onclick="location.href='@Url.Action("Index", "Administradors")';return false;">
+        <img src="~/Images/atras.png" alt="atras" style="width:24px;" />
+    </button>
+    <button class="btn" title="Eliminar" onclick="location.href='@Url.Action("Index", "Administradors")';return false;">
+        <img src="~/Images/eliminar.png" alt="eliminar" style="width:24px;" />
+    </button>
+</div>
+    }
+</div>

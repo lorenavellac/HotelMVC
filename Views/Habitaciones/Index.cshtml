@@ -1,0 +1,78 @@
+﻿@model IEnumerable<HotelMVC.Models.Habitaciones>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Crear Habitación</h2>
+
+<p>
+    <div class="row">
+        <div class="input-group">
+            <div class="col-sm-12">
+                <button class="btn" title="Registrar" onclick="location.href='@Url.Action("Create", "Habitacion")';return false;">
+                    <img src="~/Images/nuevo.png" alt="nuevo" style="width:24px;" />
+                </button>
+            </div>
+        </div>
+    </div>   
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nro. Habitación
+        </th>
+        <th>
+            Tipo Habitación
+        </th>
+
+        <th>
+            Nro. Personas
+        </th>
+        <th>
+            Tarifa
+        </th>
+        <th>
+            Estado
+        </th>
+
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.NumeroHabitacion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CTipoHabitacion.Descripcion)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.NumeroPersonas)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tarifa)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CEstados.Descripcion)
+    </td>
+    <td>
+        <div>
+            <button class="btn" title="Detalle" onclick="location.href='@Url.Action("Details", "Habitaciones", new { id = item.NumeroHabitacion })';return false;">
+                <img src="~/Images/detalles.png" alt="detalle" style="width:16px;" />
+            </button>
+            <button class="btn" title="Editar" onclick="location.href='@Url.Action("Edit", "Habitaciones", new { id = item.NumeroHabitacion })';return false;">
+                <img src="~/Images/editar.png" alt="editar" style="width:16px;" />
+            </button>
+            <button class="btn" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Habitaciones", new { id = item.NumeroHabitacion })';return false;">
+                <img src="~/Images/eliminar.png" alt="eliminar" style="width:16px;" />
+            </button>
+        </div>
+
+    </td>
+</tr>
+}
+
+</table>

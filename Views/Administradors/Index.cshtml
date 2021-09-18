@@ -1,0 +1,71 @@
+﻿@model IEnumerable<HotelMVC.Models.Administrador>
+
+@{
+    ViewBag.Title = "ADMINISTRADOR";
+}
+
+<h2>Información de Administradores</h2>
+
+<p>
+    <div class="row">
+        <div class="input-group">
+            <div class="col-sm-12">
+                <button class="btn" title="Registrar" onclick="location.href='@Url.Action("Create", "Administradors")';return false;">
+                    <img src="~/Images/nuevo.png" alt="nuevo" style="width:24px;" />
+                </button>
+            </div>
+        </div>
+    </div>
+ </p>
+<table class="table">
+    <tr>
+        <th>Tipo Id.</th>
+        <th>Nro. Identificación</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Teléfono</th>
+        <th>Correo</th>           
+        <th>Descripción</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.CTipoIdentificacion.IdTipoIdentificacion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NumeroIdentificacion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombres)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Apellidos)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Telefono)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Correo)
+    </td>    
+    <td>
+        @Html.DisplayFor(modelItem => item.CEstados.Descripcion)
+    </td>
+    <td>
+        <div>
+            <button class="btn" title="Detalle" onclick="location.href='@Url.Action("Details", "Administradors", new { id = item.IdAdministrador })';return false;">
+                <img src="~/Images/detalles.png" alt="detalle" style="width:16px;" />
+            </button>
+            <button class="btn" title="Editar" onclick="location.href='@Url.Action("Edit", "Administradors", new { id = item.IdAdministrador })';return false;">
+                <img src="~/Images/editar.png" alt="editar" style="width:16px;" />
+            </button>
+            <button class="btn" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Administradors", new { id = item.IdAdministrador })';return false;">
+                <img src="~/Images/eliminar.png" alt="eliminar" style="width:16px;" />
+            </button>
+        </div>
+    </td>
+</tr>
+}
+
+</table>
