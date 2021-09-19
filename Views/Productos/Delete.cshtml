@@ -8,83 +8,104 @@
 
 <h3>¿Está seguro de querer eliminar este registro?</h3>
 <div>
-    <h4>Productos</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
+    @if (ViewBag.Mensaje != null)
+    {
+        <div class='modal-dialog modal-sm'>
+            <div class='modal-content'>
+                <div class='modal-header' style="background-color: #007bff; color: #fff;">
+                    <h4 class='modal-title'>Información</h4>
+                </div>
+                <div class='modal-body'>
+                    <p>@ViewBag.Mensaje</p>
+                </div>
+                <div class='modal-footer'>
+                    <button class="btn" title="Regresar" onclick="location.href='@Url.Action("Index", "Productos")';return false;">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <h4>Productos</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Codigo)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Codigo)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Codigo)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Precio)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Precio)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Precio)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Precio)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Costo)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Costo)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Costo)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Costo)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Existencia)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Existencia)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Existencia)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Existencia)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Observaciones)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Observaciones)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Observaciones)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Observaciones)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CEstados.Descripcion)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CEstados.Descripcion)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CEstados.Descripcion)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CEstados.Descripcion)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Proveedores.RazonSocial)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Proveedores.RazonSocial)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Proveedores.RazonSocial)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Proveedores.RazonSocial)
+            </dd>
 
-    </dl>
-
-    @using (Html.BeginForm()) {
+        </dl>
+    }
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-<div class="form-actions no-color">
-    <button class="btn" title="Regresar" onclick="location.href='@Url.Action("Index", "Productos")';return false;">
-        <img src="~/Images/atras.png" alt="atras" style="width:24px;" />
-    </button>
-    <input type="submit" value="Eliminar" class="btn btn-default" />
-</div>
+        <div class="form-actions no-color">
+            <button class="btn" title="Regresar" onclick="location.href='@Url.Action("Index", "Productos")';return false;">
+                <img src="~/Images/atras.png" alt="atras" style="width:24px;" />
+            </button>
+            <input type="submit" value="Eliminar" class="btn btn-default" />
+        </div>
     }
 </div>

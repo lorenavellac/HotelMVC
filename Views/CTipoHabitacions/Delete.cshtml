@@ -7,23 +7,44 @@
 <h2>Borrar Habitación</h2>
 
 <div>
-    <hr />
-    <dl class="dl-horizontal">
-    <dt>Descripción</dt>
-    <dd>@Html.DisplayFor(model => model.Descripcion)</dd>
+    @if (ViewBag.Mensaje != null)
+    {
+        <div class='modal-dialog modal-sm'>
+            <div class='modal-content'>
+                <div class='modal-header' style="background-color: #007bff; color: #fff;">
+                    <h4 class='modal-title'>Información</h4>
+                </div>
+                <div class='modal-body'>
+                    <p>@ViewBag.Mensaje</p>
+                </div>
+                <div class='modal-footer'>
+                    <button class="btn" title="Regresar" onclick="location.href='@Url.Action("Index", "CTipoHabitacions")';return false;">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Descripción</dt>
+            <dd>@Html.DisplayFor(model => model.Descripcion)</dd>
 
-    </dl>
-
-    @using (Html.BeginForm()) {
+        </dl>
+    }
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-<div class="form-actions no-color">
-    <button class="btn" title="Regresar" onclick="location.href='@Url.Action("Index", "CTipoHabitacions")';return false;">
-        <img src="~/Images/atras.png" alt="atras" style="width:24px;" />
-    </button>
-    <button class="btn" title="Eliminar" type="submit">
-        <img src="~/Images/eliminar.png" alt="eliminar" style="width:24px;" />
-    </button>
-</div>
+        <div class="form-actions no-color">
+            <button class="btn" title="Regresar" onclick="location.href='@Url.Action("Index", "CTipoHabitacions")';return false;">
+                <img src="~/Images/atras.png" alt="atras" style="width:24px;" />
+            </button>
+            <button class="btn" title="Eliminar" type="submit">
+                <img src="~/Images/eliminar.png" alt="eliminar" style="width:24px;" />
+            </button>
+        </div>
     }
 </div>

@@ -18,6 +18,7 @@ namespace HotelMVC.Models
         public Entrada()
         {
             this.DetalleEntrada = new HashSet<DetalleEntrada>();
+            this.detalleEntrada = new DetalleEntrada();
         }
     
         public int IdEntrada { get; set; }
@@ -30,5 +31,6 @@ namespace HotelMVC.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetalleEntrada> DetalleEntrada { get; set; }
         public virtual Proveedores Proveedores { get; set; }
+        public DetalleEntrada detalleEntrada { get; set; }
     }
 }
