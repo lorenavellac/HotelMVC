@@ -12,7 +12,7 @@ namespace HotelMVC.Controllers
 {
     public class TransaccionesController : Controller
     {
-        private Conexion db = new Conexion();
+        private readonly Conexion db = new Conexion();
 
         // GET: Transacciones
         public ActionResult Index()

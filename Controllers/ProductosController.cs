@@ -118,10 +118,18 @@ namespace HotelMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Productos productos = db.Productos.Find(id);
-            db.Productos.Remove(productos);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                Productos productos = db.Productos.Find(id);
+                db.Productos.Remove(productos);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                ViewBag.Mensaje = "El producto no puede ser eliminado.";
+                return View();
+            }
         }
 
         protected override void Dispose(bool disposing)

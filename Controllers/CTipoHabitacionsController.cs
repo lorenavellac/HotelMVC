@@ -12,7 +12,7 @@ namespace HotelMVC.Controllers
 {
     public class CTipoHabitacionsController : Controller
     {
-        private Conexion db = new Conexion();
+        private readonly Conexion db = new Conexion();
 
         // GET: CTipoHabitacions
         public ActionResult Index()
@@ -109,10 +109,18 @@ namespace HotelMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CTipoHabitacion cTipoHabitacion = db.CTipoHabitacion.Find(id);
-            db.CTipoHabitacion.Remove(cTipoHabitacion);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                CTipoHabitacion cTipoHabitacion = db.CTipoHabitacion.Find(id);
+                db.CTipoHabitacion.Remove(cTipoHabitacion);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                ViewBag.Mensaje = "El tipo de habitación no puede ser eliminado.";
+                return View();
+            }
         }
 
         protected override void Dispose(bool disposing)

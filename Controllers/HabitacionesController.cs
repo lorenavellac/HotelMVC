@@ -12,7 +12,7 @@ namespace HotelMVC.Controllers
 {
     public class HabitacionesController : Controller
     {
-        private Conexion db = new Conexion();
+        private readonly Conexion db = new Conexion();
 
         // GET: Habitaciones
         public ActionResult Index()
@@ -118,10 +118,18 @@ namespace HotelMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Habitaciones habitaciones = db.Habitaciones.Find(id);
-            db.Habitaciones.Remove(habitaciones);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                Habitaciones habitaciones = db.Habitaciones.Find(id);
+                db.Habitaciones.Remove(habitaciones);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                ViewBag.Mensaje = "La habitación no puede ser eliminada.";
+                return View();
+            }
         }
 
         protected override void Dispose(bool disposing)

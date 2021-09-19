@@ -4,28 +4,49 @@
     ViewBag.Title = "Delete";
 }
 <h2>Borrar Cliente</h2>
-<div>    
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Tipo Id</dt>
-        <dd>@Html.DisplayFor(model => model.CTipoIdentificacion.Descripcion)</dd>
-        <dt>Número Identificación</dt>
-        <dd>@Html.DisplayFor(model => model.NumeroIdentificacion)</dd>
-        <dt>Nombres</dt>
-        <dd>@Html.DisplayFor(model => model.Nombres)</dd>
-        <dt>Apellidos</dt>
-        <dd>@Html.DisplayFor(model => model.Apellidos)</dd>
-        <dt>Teléfono</dt>
-        <dd>@Html.DisplayFor(model => model.Telefono)</dd>
-        <dt>Correo</dt>
-        <dd>@Html.DisplayFor(model => model.Correo)</dd>
-        <dt>Estado</dt>
-        <dd>@Html.DisplayFor(model => model.CEstados.Descripcion)</dd>
-        <dt>Observaciones</dt>
-        <dd>@Html.DisplayFor(model => model.Observaciones)</dd>
-     </dl>
-
-    @using (Html.BeginForm()) {
+<div>
+    @if (ViewBag.Mensaje != null)
+    {
+        <div class='modal-dialog modal-sm'>
+            <div class='modal-content'>
+                <div class='modal-header' style="background-color: #007bff; color: #fff;">
+                    <h4 class='modal-title'>Información</h4>
+                </div>
+                <div class='modal-body'>
+                    <p>@ViewBag.Mensaje</p>
+                </div>
+                <div class='modal-footer'>
+                    <button class="btn" title="Regresar" onclick="location.href='@Url.Action("Index", "Clientes")';return false;">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Tipo Id</dt>
+            <dd>@Html.DisplayFor(model => model.CTipoIdentificacion.Descripcion)</dd>
+            <dt>Número Identificación</dt>
+            <dd>@Html.DisplayFor(model => model.NumeroIdentificacion)</dd>
+            <dt>Nombres</dt>
+            <dd>@Html.DisplayFor(model => model.Nombres)</dd>
+            <dt>Apellidos</dt>
+            <dd>@Html.DisplayFor(model => model.Apellidos)</dd>
+            <dt>Teléfono</dt>
+            <dd>@Html.DisplayFor(model => model.Telefono)</dd>
+            <dt>Correo</dt>
+            <dd>@Html.DisplayFor(model => model.Correo)</dd>
+            <dt>Estado</dt>
+            <dd>@Html.DisplayFor(model => model.CEstados.Descripcion)</dd>
+            <dt>Observaciones</dt>
+            <dd>@Html.DisplayFor(model => model.Observaciones)</dd>
+        </dl>
+    }
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
@@ -34,7 +55,7 @@
             </button>
             <button class="btn" title="Eliminar" type="submit">
                 <img src="~/Images/eliminar.png" alt="eliminar" style="width:24px;" />
-            </button>            
+            </button>
         </div>
     }
 </div>

@@ -163,3 +163,4 @@ C:\HotelMVC\HotelMVC\HotelMVC\obj\Debug\HotelMVC.csproj.CoreCompileInputs.cache
 C:\HotelMVC\HotelMVC\HotelMVC\obj\Debug\HotelMVC.csproj.CopyComplete
 C:\HotelMVC\HotelMVC\HotelMVC\obj\Debug\HotelMVC.dll
 C:\HotelMVC\HotelMVC\HotelMVC\obj\Debug\HotelMVC.pdb
+C:\HotelMVC\HotelMVC\HotelMVC\obj\Debug\HotelMVC.csprojAssemblyReference.cache
