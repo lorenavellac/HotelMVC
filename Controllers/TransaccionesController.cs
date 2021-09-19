@@ -40,9 +40,8 @@ namespace HotelMVC.Controllers
         public ActionResult Create()
         {
             ViewBag.IdEstado = new SelectList(db.CEstados, "IdEstado", "Descripcion");
-            ViewBag.IdEstado = new SelectList(db.CEstados, "IdEstado", "Descripcion");
-            ViewBag.NumeroIdentificacion = new SelectList(db.Clientes, "NumeroIdentificacion", "IdTipoIdentificacion");
-            ViewBag.NumeroHabitacion = new SelectList(db.Habitaciones, "NumeroHabitacion", "Observaciones");
+            ViewBag.IdTipoIdentificacion = new SelectList(db.CTipoIdentificacion, "IdTipoIdentificacion", "IdTipoIdentificacion");
+            ViewBag.NumeroHabitacion = new SelectList(db.Habitaciones, "NumeroHabitacion", "NumeroHabitacion");
             return View();
         }
 
@@ -51,7 +50,7 @@ namespace HotelMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdTransaccion,NumeroIdentificacion,NumeroHabitacion,FechaHoraIngreso,FechaHoraSalida,TotalDias,NumeroPersonas,IdEstado,Total")] Transacciones transacciones)
+        public ActionResult Create([Bind(Include = "IdTransaccion,IdTipoIdentificacion, NumeroIdentificacion,NumeroHabitacion,FechaHoraIngreso,FechaHoraSalida,NumeroPersonas,IdEstado,Total")] Transacciones transacciones)
         {
             if (ModelState.IsValid)
             {
@@ -61,9 +60,8 @@ namespace HotelMVC.Controllers
             }
 
             ViewBag.IdEstado = new SelectList(db.CEstados, "IdEstado", "Descripcion", transacciones.IdEstado);
-            ViewBag.IdEstado = new SelectList(db.CEstados, "IdEstado", "Descripcion", transacciones.IdEstado);
-            ViewBag.NumeroIdentificacion = new SelectList(db.Clientes, "NumeroIdentificacion", "IdTipoIdentificacion", transacciones.NumeroIdentificacion);
-            ViewBag.NumeroHabitacion = new SelectList(db.Habitaciones, "NumeroHabitacion", "Observaciones", transacciones.NumeroHabitacion);
+            ViewBag.IdTipoIdentificacion = new SelectList(db.CTipoIdentificacion, "IdTipoIdentificacion", "IdTipoIdentificacion", transacciones.IdTipoIdentificacion);
+            ViewBag.NumeroHabitacion = new SelectList(db.Habitaciones, "NumeroHabitacion", "NumeroHabitacion", transacciones.NumeroHabitacion);
             return View(transacciones);
         }
 
@@ -91,7 +89,7 @@ namespace HotelMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdTransaccion,NumeroIdentificacion,NumeroHabitacion,FechaHoraIngreso,FechaHoraSalida,TotalDias,NumeroPersonas,IdEstado,Total")] Transacciones transacciones)
+        public ActionResult Edit([Bind(Include = "IdTransaccion,NumeroIdentificacion,NumeroHabitacion,FechaHoraIngreso,FechaHoraSalida,NumeroPersonas,IdEstado,Total")] Transacciones transacciones)
         {
             if (ModelState.IsValid)
             {

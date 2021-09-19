@@ -74,7 +74,10 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn" title="Regresar" onclick="location.href='@Url.Action("Index", "Habitaciones")';return false;">
+        <img src="~/Images/atras.png" alt="atras" style="width:24px;" />
+    </button>
+  
 </div>
 
 @section Scripts {

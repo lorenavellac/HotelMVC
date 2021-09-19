@@ -70,6 +70,7 @@
     <NavigationProperty Name="Administrador" Relationship="Self.FK_Administrador_CTipoIdentificacion" FromRole="CTipoIdentificacion" ToRole="Administrador" />
     <NavigationProperty Name="Clientes" Relationship="Self.FK_Clientes_CTipoIdentificacion" FromRole="CTipoIdentificacion" ToRole="Clientes" />
     <NavigationProperty Name="Proveedores" Relationship="Self.FK_Proveedores_CTipoIdentificacion" FromRole="CTipoIdentificacion" ToRole="Proveedores" />
+    <NavigationProperty Name="Transacciones" Relationship="ModeloHotel.FK_Transacciones_CTipoIdentificacion" FromRole="CTipoIdentificacion" ToRole="Transacciones" />
   </EntityType>
   <EntityType Name="DetalleEntrada">
     <Key>
@@ -101,7 +102,7 @@
     <Property Name="IdEntrada" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="NumeroIdentificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Total" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="IdEstado" Type="Int16" Nullable="false" />
     <NavigationProperty Name="CEstados" Relationship="Self.FK_Entrada_CEstados" FromRole="Entrada" ToRole="CEstados" />
     <NavigationProperty Name="DetalleEntrada" Relationship="Self.FK_DetalleEntrada_Entrada" FromRole="Entrada" ToRole="DetalleEntrada" />
@@ -189,9 +190,8 @@
     <Property Name="IdTransaccion" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NumeroIdentificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="NumeroHabitacion" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="FechaHoraIngreso" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FechaHoraIngreso" Type="DateTime" Precision="3" />
     <Property Name="FechaHoraSalida" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="TotalDias" Type="Int32" Nullable="false" />
     <Property Name="NumeroPersonas" Type="Int32" Nullable="false" />
     <Property Name="IdEstado" Type="Int16" Nullable="false" />
     <Property Name="Total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
@@ -200,6 +200,8 @@
     <NavigationProperty Name="Clientes" Relationship="Self.FK_Transacciones_Clientes" FromRole="Transacciones" ToRole="Clientes" />
     <NavigationProperty Name="Habitaciones" Relationship="Self.FK_Transacciones_Habitaciones" FromRole="Transacciones" ToRole="Habitaciones" />
     <NavigationProperty Name="TransaccionesOrdenPago" Relationship="Self.FK_TransaccionesOrdenPago_Transacciones" FromRole="Transacciones" ToRole="TransaccionesOrdenPago" />
+    <Property Name="IdTipoIdentificacion" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CTipoIdentificacion" Relationship="ModeloHotel.FK_Transacciones_CTipoIdentificacion" FromRole="Transacciones" ToRole="CTipoIdentificacion" />
   </EntityType>
   <EntityType Name="TransaccionesOrdenPago">
     <Key>
@@ -861,6 +863,10 @@
       <Parameter Name="User" Mode="In" Type="String" />
       <Parameter Name="Pass" Mode="In" Type="String" />
     </FunctionImport>
+    <AssociationSet Name="FK_Transacciones_CTipoIdentificacion" Association="ModeloHotel.FK_Transacciones_CTipoIdentificacion">
+      <End Role="CTipoIdentificacion" EntitySet="CTipoIdentificacion" />
+      <End Role="Transacciones" EntitySet="Transacciones" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -1033,4 +1039,16 @@
     <Property Type="String" Name="IdTipoIdentificacion" Nullable="false" MaxLength="3" />
     <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="32" />
   </ComplexType>
+  <Association Name="FK_Transacciones_CTipoIdentificacion">
+    <End Type="ModeloHotel.CTipoIdentificacion" Role="CTipoIdentificacion" Multiplicity="1" />
+    <End Type="ModeloHotel.Transacciones" Role="Transacciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CTipoIdentificacion">
+        <PropertyRef Name="IdTipoIdentificacion" />
+      </Principal>
+      <Dependent Role="Transacciones">
+        <PropertyRef Name="IdTipoIdentificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

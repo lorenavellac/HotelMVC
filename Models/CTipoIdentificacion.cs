@@ -20,6 +20,7 @@ namespace HotelMVC.Models
             this.Administrador = new HashSet<Administrador>();
             this.Clientes = new HashSet<Clientes>();
             this.Proveedores = new HashSet<Proveedores>();
+            this.Transacciones = new HashSet<Transacciones>();
         }
     
         public string IdTipoIdentificacion { get; set; }
@@ -31,5 +32,7 @@ namespace HotelMVC.Models
         public virtual ICollection<Clientes> Clientes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Proveedores> Proveedores { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Transacciones> Transacciones { get; set; }
     }
 }

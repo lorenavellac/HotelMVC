@@ -10,7 +10,7 @@
     <div class="row">
         <div class="input-group">
             <div class="col-sm-12">
-                <button class="btn" title="Registrar" onclick="location.href='@Url.Action("Create", "Habitacion")';return false;">
+                <button class="btn" title="Registrar" onclick="location.href='@Url.Action("Create", "Habitaciones")';return false;">
                     <img src="~/Images/nuevo.png" alt="nuevo" style="width:24px;" />
                 </button>
             </div>
@@ -19,45 +19,21 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            Nro. Habitación
-        </th>
-        <th>
-            Tipo Habitación
-        </th>
-
-        <th>
-            Nro. Personas
-        </th>
-        <th>
-            Tarifa
-        </th>
-        <th>
-            Estado
-        </th>
-
-
+        <th>Nro. Habitación</th>
+        <th>Tipo Habitación</th>
+        <th>Nro. Personas</th>
+        <th>Tarifa</th>
+        <th>Estado</th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
 <tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.NumeroHabitacion)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CTipoHabitacion.Descripcion)
-    </td>
-
-    <td>
-        @Html.DisplayFor(modelItem => item.NumeroPersonas)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Tarifa)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CEstados.Descripcion)
-    </td>
+    <td>@Html.DisplayFor(modelItem => item.NumeroHabitacion)</td>
+    <td>@Html.DisplayFor(modelItem => item.CTipoHabitacion.Descripcion)</td>
+    <td>@Html.DisplayFor(modelItem => item.NumeroPersonas)</td>
+    <td>@Html.DisplayFor(modelItem => item.Tarifa)</td>
+    <td>@Html.DisplayFor(modelItem => item.CEstados.Descripcion)</td>
     <td>
         <div>
             <button class="btn" title="Detalle" onclick="location.href='@Url.Action("Details", "Habitaciones", new { id = item.NumeroHabitacion })';return false;">

@@ -3,9 +3,7 @@
 @{
     ViewBag.Title = "Clientes";
 }
-
 <h2>Información de clientes</h2>
-
 <p>
     <div class="row">
         <div class="input-group">
@@ -31,27 +29,13 @@
 
 @foreach (var item in Model) {
 <tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.CTipoIdentificacion.IdTipoIdentificacion)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.NumeroIdentificacion)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Nombres)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Apellidos)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Telefono)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Correo)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CEstados.Descripcion)
-    </td>
+    <td>@Html.DisplayFor(modelItem => item.CTipoIdentificacion.IdTipoIdentificacion)</td>
+    <td>@Html.DisplayFor(modelItem => item.NumeroIdentificacion)</td>
+    <td>@Html.DisplayFor(modelItem => item.Nombres)</td>
+    <td>@Html.DisplayFor(modelItem => item.Apellidos)</td>
+    <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
+    <td>@Html.DisplayFor(modelItem => item.Correo)</td>
+    <td>@Html.DisplayFor(modelItem => item.CEstados.Descripcion)</td>
     <td>
         <div>
             <button class="btn" title="Detalle" onclick="location.href='@Url.Action("Details", "Clientes", new { id = item.NumeroIdentificacion })';return false;">

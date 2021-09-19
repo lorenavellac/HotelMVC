@@ -26,7 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", @required = "true" } })
                 @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -34,7 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Codigo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Codigo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Codigo, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase;", @required="true"} })
                 @Html.ValidationMessageFor(model => model.Codigo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -42,7 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control", @type="number", @min="0",@required="true"} })
                 @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -50,7 +50,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Costo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Costo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Costo, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @required = "true" } })
                 @Html.ValidationMessageFor(model => model.Costo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -58,7 +58,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Existencia, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Existencia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Existencia, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @required = "true" } })
                 @Html.ValidationMessageFor(model => model.Existencia, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -88,7 +88,9 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn" title="Regresar" onclick="location.href='@Url.Action("Index", "Productos")';return false;">
+        <img src="~/Images/atras.png" alt="atras" style="width:24px;" />
+    </button>
 </div>
 
 @section Scripts {

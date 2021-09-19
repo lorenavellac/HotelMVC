@@ -48,7 +48,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Telefono, "Teléfono", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "999999", @max = "999999999", @required = "true" } })
+                @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "999999", @max = "9999999999", @required = "true" } })
                 @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -100,7 +100,6 @@
         </div>
     </div>
 }
-
 <div>
     <button class="btn" title="Regresar" onclick="location.href='@Url.Action("Index", "Administradors")';return false;">
         <img src="~/Images/atras.png" alt="atras" style="width:24px;" />

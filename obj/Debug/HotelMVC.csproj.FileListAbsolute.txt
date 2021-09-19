@@ -159,7 +159,6 @@ C:\HotelMVC\HotelMVC\HotelMVC\bin\System.Web.WebPages.Razor.xml
 C:\HotelMVC\HotelMVC\HotelMVC\bin\Newtonsoft.Json.xml
 C:\HotelMVC\HotelMVC\HotelMVC\bin\Antlr3.Runtime.pdb
 C:\HotelMVC\HotelMVC\HotelMVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\HotelMVC\HotelMVC\HotelMVC\obj\Debug\HotelMVC.csprojAssemblyReference.cache
 C:\HotelMVC\HotelMVC\HotelMVC\obj\Debug\HotelMVC.csproj.CoreCompileInputs.cache
 C:\HotelMVC\HotelMVC\HotelMVC\obj\Debug\HotelMVC.csproj.CopyComplete
 C:\HotelMVC\HotelMVC\HotelMVC\obj\Debug\HotelMVC.dll

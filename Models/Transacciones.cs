@@ -23,12 +23,12 @@ namespace HotelMVC.Models
         public long IdTransaccion { get; set; }
         public string NumeroIdentificacion { get; set; }
         public string NumeroHabitacion { get; set; }
-        public System.DateTime FechaHoraIngreso { get; set; }
+        public Nullable<System.DateTime> FechaHoraIngreso { get; set; }
         public System.DateTime FechaHoraSalida { get; set; }
-        public int TotalDias { get; set; }
         public int NumeroPersonas { get; set; }
         public short IdEstado { get; set; }
         public decimal Total { get; set; }
+        public string IdTipoIdentificacion { get; set; }
     
         public virtual CEstados CEstados { get; set; }
         public virtual CEstados CEstados1 { get; set; }
@@ -36,5 +36,6 @@ namespace HotelMVC.Models
         public virtual Habitaciones Habitaciones { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransaccionesOrdenPago> TransaccionesOrdenPago { get; set; }
+        public virtual CTipoIdentificacion CTipoIdentificacion { get; set; }
     }
 }

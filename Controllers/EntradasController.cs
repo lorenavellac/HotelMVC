@@ -12,7 +12,7 @@ namespace HotelMVC.Controllers
 {
     public class EntradasController : Controller
     {
-        private Conexion db = new Conexion();
+        private readonly Conexion db = new Conexion();
 
         // GET: Entradas
         public ActionResult Index()
@@ -39,7 +39,7 @@ namespace HotelMVC.Controllers
         // GET: Entradas/Create
         public ActionResult Create()
         {
-            ViewBag.IdEstado = new SelectList(db.CEstados, "IdEstado", "Descripcion");
+            ViewBag.IdEstado = new SelectList(db.CEstados.Where(x => x.Categoria.Equals("Entradas")), "IdEstado", "Descripcion");
             ViewBag.NumeroIdentificacion = new SelectList(db.Proveedores, "NumeroIdentificacion", "RazonSocial");
             return View();
         }
@@ -55,10 +55,10 @@ namespace HotelMVC.Controllers
             {
                 db.Entrada.Add(entrada);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "DetalleEntradas", entrada.IdEntrada);
             }
 
-            ViewBag.IdEstado = new SelectList(db.CEstados, "IdEstado", "Descripcion", entrada.IdEstado);
+            ViewBag.IdEstado = new SelectList(db.CEstados.Where(x => x.Categoria.Equals("Entradas")), "IdEstado", "Descripcion", entrada.IdEstado);
             ViewBag.NumeroIdentificacion = new SelectList(db.Proveedores, "NumeroIdentificacion", "RazonSocial", entrada.NumeroIdentificacion);
             return View(entrada);
         }
@@ -75,7 +75,7 @@ namespace HotelMVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IdEstado = new SelectList(db.CEstados, "IdEstado", "Descripcion", entrada.IdEstado);
+            ViewBag.IdEstado = new SelectList(db.CEstados.Where(x => x.Categoria.Equals("Entradas")), "IdEstado", "Descripcion", entrada.IdEstado);
             ViewBag.NumeroIdentificacion = new SelectList(db.Proveedores, "NumeroIdentificacion", "RazonSocial", entrada.NumeroIdentificacion);
             return View(entrada);
         }
@@ -93,7 +93,7 @@ namespace HotelMVC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdEstado = new SelectList(db.CEstados, "IdEstado", "Descripcion", entrada.IdEstado);
+            ViewBag.IdEstado = new SelectList(db.CEstados.Where(x => x.Categoria.Equals("Entradas")), "IdEstado", "Descripcion", entrada.IdEstado);
             ViewBag.NumeroIdentificacion = new SelectList(db.Proveedores, "NumeroIdentificacion", "RazonSocial", entrada.NumeroIdentificacion);
             return View(entrada);
         }

@@ -156,12 +156,12 @@
     <EntitySetMapping Name="Transacciones">
       <EntityTypeMapping TypeName="ModeloHotel.Transacciones">
         <MappingFragment StoreEntitySet="Transacciones">
+          <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
           <ScalarProperty Name="IdTransaccion" ColumnName="IdTransaccion" />
           <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
           <ScalarProperty Name="NumeroHabitacion" ColumnName="NumeroHabitacion" />
           <ScalarProperty Name="FechaHoraIngreso" ColumnName="FechaHoraIngreso" />
           <ScalarProperty Name="FechaHoraSalida" ColumnName="FechaHoraSalida" />
-          <ScalarProperty Name="TotalDias" ColumnName="TotalDias" />
           <ScalarProperty Name="NumeroPersonas" ColumnName="NumeroPersonas" />
           <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
           <ScalarProperty Name="Total" ColumnName="Total" />
