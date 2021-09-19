@@ -12,7 +12,7 @@ namespace HotelMVC.Controllers
 {
     public class ProveedoresController : Controller
     {
-        private Conexion db = new Conexion();
+        private readonly Conexion db = new Conexion();
 
         // GET: Proveedores
         public ActionResult Index()
@@ -118,10 +118,19 @@ namespace HotelMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Proveedores proveedores = db.Proveedores.Find(id);
-            db.Proveedores.Remove(proveedores);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                Proveedores proveedores = db.Proveedores.Find(id);
+                db.Proveedores.Remove(proveedores);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                ViewBag.Mensaje = "El proveedor no puede ser eliminado.";
+                return View();
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

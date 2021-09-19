@@ -77,7 +77,7 @@
     <Property Name="IdEntrada" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FechaHora" Type="datetime" Nullable="false" />
     <Property Name="NumeroIdentificacion" Type="varchar" MaxLength="15" Nullable="false" />
-    <Property Name="Total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Total" Type="decimal" Precision="10" Scale="2" />
     <Property Name="IdEstado" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="Habitaciones">
@@ -144,11 +144,11 @@
       <PropertyRef Name="IdTransaccion" />
     </Key>
     <Property Name="IdTransaccion" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoIdentificacion" Type="varchar" MaxLength="3" Nullable="false" />
     <Property Name="NumeroIdentificacion" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="NumeroHabitacion" Type="varchar" MaxLength="5" Nullable="false" />
-    <Property Name="FechaHoraIngreso" Type="datetime" Nullable="false" />
+    <Property Name="FechaHoraIngreso" Type="datetime" />
     <Property Name="FechaHoraSalida" Type="datetime" Nullable="false" />
-    <Property Name="TotalDias" Type="int" Nullable="false" />
     <Property Name="NumeroPersonas" Type="int" Nullable="false" />
     <Property Name="IdEstado" Type="smallint" Nullable="false" />
     <Property Name="Total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
@@ -422,6 +422,18 @@
       </Principal>
       <Dependent Role="Transacciones">
         <PropertyRef Name="NumeroIdentificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transacciones_CTipoIdentificacion">
+    <End Role="CTipoIdentificacion" Type="Self.CTipoIdentificacion" Multiplicity="1" />
+    <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CTipoIdentificacion">
+        <PropertyRef Name="IdTipoIdentificacion" />
+      </Principal>
+      <Dependent Role="Transacciones">
+        <PropertyRef Name="IdTipoIdentificacion" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -798,6 +810,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Transacciones_Clientes" Association="Self.FK_Transacciones_Clientes">
       <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Transacciones" EntitySet="Transacciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transacciones_CTipoIdentificacion" Association="Self.FK_Transacciones_CTipoIdentificacion">
+      <End Role="CTipoIdentificacion" EntitySet="CTipoIdentificacion" />
       <End Role="Transacciones" EntitySet="Transacciones" />
     </AssociationSet>
     <AssociationSet Name="FK_Transacciones_Habitaciones" Association="Self.FK_Transacciones_Habitaciones">

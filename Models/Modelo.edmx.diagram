@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d47bf1ac2ac341d3a14bc16cbb557cd8" Name="Diagram1">
+      <Diagram DiagramId="d47bf1ac2ac341d3a14bc16cbb557cd8" Name="Diagram1" ZoomLevel="55">
         <EntityTypeShape EntityType="ModeloHotel.Administrador" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ModeloHotel.CEstados" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ModeloHotel.Clientes" Width="1.5" PointX="6" PointY="14" IsExpanded="true" />
@@ -45,6 +45,7 @@
         <AssociationConnector Association="ModeloHotel.FK_TransaccionesOrdenPago_OrdenPago" ManuallyRouted="false" />
         <AssociationConnector Association="ModeloHotel.FK_Productos_Proveedores" ManuallyRouted="false" />
         <AssociationConnector Association="ModeloHotel.FK_TransaccionesOrdenPago_Transacciones" ManuallyRouted="false" />
+        <AssociationConnector Association="ModeloHotel.FK_Transacciones_CTipoIdentificacion" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

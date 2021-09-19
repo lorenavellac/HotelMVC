@@ -4,23 +4,21 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalle Habitación</h2>
 
 <div>
-    <h4>CTipoHabitacion</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-
+        <dt>Descripción</dt>
+        <dd>@Html.DisplayFor(model => model.Descripcion)</dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdTipoHabitacion }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn" title="Editar" onclick="location.href='@Url.Action("Edit", new { id = Model.IdTipoHabitacion })';return false;">
+        <img src="~/Images/editar.png" alt="editar" style="width:24px;" />
+    </button>
+    <button class="btn" title="Regresar" onclick="location.href='@Url.Action("Index")';return false;">
+        <img src="~/Images/atras.png" alt="atras" style="width:24px;" />
+    </button>
+   
 </p>

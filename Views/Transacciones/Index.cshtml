@@ -12,70 +12,67 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FechaHoraIngreso)
+            Nro. Hab.
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaHoraSalida)
+            Tipo Id.
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TotalDias)
+            Nro. Identificación
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NumeroPersonas)
+            Fecha y Hora de Ingreso
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Total)
+            Fecha y Hora de Salida
+        </th>
+        @*<th>
+            Total Días
+        </th>*@
+        <th>
+            Nro. Personas
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CEstados.Descripcion)
+            Total
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CEstados1.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Clientes.IdTipoIdentificacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Habitaciones.Observaciones)
+            Estado
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaHoraIngreso)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaHoraSalida)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalDias)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumeroPersonas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Total)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CEstados.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CEstados1.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Clientes.IdTipoIdentificacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Habitaciones.Observaciones)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdTransaccion }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdTransaccion }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdTransaccion })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Habitaciones.NumeroHabitacion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Clientes.IdTipoIdentificacion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Clientes.NumeroIdentificacion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FechaHoraIngreso)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FechaHoraSalida)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NumeroPersonas)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Total)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CEstados.Descripcion)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.IdTransaccion }) |
+        @Html.ActionLink("Details", "Details", new { id = item.IdTransaccion }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.IdTransaccion })
+    </td>
+</tr>
 }
 
 </table>

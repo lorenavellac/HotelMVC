@@ -7,7 +7,15 @@
 <h2>Productos</h2>
 
 <p>
-    @Html.ActionLink("Crear Nuevo Producto", "")
+    <div class="row">
+        <div class="input-group">
+            <div class="col-sm-12">
+                <button class="btn" title="Registrar" onclick="location.href='@Url.Action("Create", "PRODUCTOS")';return false;">
+                    <img src="~/Images/nuevo.png" alt="nuevo" style="width:24px;" />
+                </button>
+            </div>
+        </div>
+    </div>
 </p>
 <table class="table">
     <tr>
@@ -51,9 +59,17 @@
     </td>
 
     <td>
-        @Html.ActionLink("Editar", "Edit", new { id = item.IdProducto }) |
-        @Html.ActionLink("Detalles", "Details", new { id = item.IdProducto }) |
-        @Html.ActionLink("Borrar", "Delete", new { id = item.IdProducto })
+        <div>
+            <button class="btn" title="Editar" onclick="location.href='@Url.Action("Edit", "Productos", new { id = item.IdProducto })';return false;">
+                <img src="~/Images/editar.png" alt="editar" style="width:16px;" />
+            </button>
+            <button class="btn" title="Detalle" onclick="location.href='@Url.Action("Details", "Productos", new { id = item.IdProducto })';return false;">
+                <img src="~/Images/detalles.png" alt="detalle" style="width:16px;" />
+            </button>
+            <button class="btn" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Productos", new { id = item.IdProducto })';return false;">
+                <img src="~/Images/eliminar.png" alt="eliminar" style="width:16px;" />
+            </button>
+</div>
     </td>
 </tr>
 }

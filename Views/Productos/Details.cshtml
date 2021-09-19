@@ -77,6 +77,11 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdProducto }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn" title="Regresar" onclick="location.href='@Url.Action("Index", "Productos")';return false;">
+        <img src="~/Images/atras.png" alt="atras" style="width:24px;" />
+    </button>
+    <button class="btn" title="Editar" onclick="location.href='@Url.Action("Edit", "Productos", new { id = Model.IdProducto })';return false;">
+        <img src="~/Images/editar.png" alt="editar" style="width:24px;" />
+    </button>
+
 </p>

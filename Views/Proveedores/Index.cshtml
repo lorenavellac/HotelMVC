@@ -1,13 +1,21 @@
 ﻿@model IEnumerable<HotelMVC.Models.Proveedores>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Proveedores";
 }
 
-<h2>Index</h2>
+<h2>Proveedores</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <div class="row">
+        <div class="input-group">
+            <div class="col-sm-12">
+                <button class="btn" title="Registrar" onclick="location.href='@Url.Action("Create", "Proveedores")';return false;">
+                    <img src="~/Images/nuevo.png" alt="nuevo" style="width:24px;" />
+                </button>
+            </div>
+        </div>
+    </div>
 </p>
 <table class="table">
     <tr>
@@ -65,9 +73,17 @@
             @Html.DisplayFor(modelItem => item.CTipoIdentificacion.Descripcion)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.NumeroIdentificacion }) |
-            @Html.ActionLink("Details", "Details", new { id=item.NumeroIdentificacion }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.NumeroIdentificacion })
+            <div>
+                <button class="btn" title="Editar" onclick="location.href='@Url.Action("Edit", "Proveedores", new { id = item.NumeroIdentificacion })';return false;">
+                <img src="~/Images/editar.png" alt="editar" style="width:16px;" />
+            </button>
+                <button class="btn" title="Detalle" onclick="location.href='@Url.Action("Details", "Proveedores", new { id = item.NumeroIdentificacion })';return false;">
+                    <img src="~/Images/detalles.png" alt="detalle" style="width:16px;" />
+                </button>
+                <button class="btn" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Proveedores", new { id = item.NumeroIdentificacion })';return false;">
+                <img src="~/Images/eliminar.png" alt="eliminar" style="width:16px;" />
+            </button>
+            </div>
         </td>
     </tr>
 }

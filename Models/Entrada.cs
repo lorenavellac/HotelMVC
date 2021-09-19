@@ -11,7 +11,7 @@ namespace HotelMVC.Models
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Entrada
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,17 +19,16 @@ namespace HotelMVC.Models
         {
             this.DetalleEntrada = new HashSet<DetalleEntrada>();
         }
-
+    
         public int IdEntrada { get; set; }
         public System.DateTime FechaHora { get; set; }
         public string NumeroIdentificacion { get; set; }
-        public decimal Total { get; set; }
+        public Nullable<decimal> Total { get; set; }
         public short IdEstado { get; set; }
-
+    
         public virtual CEstados CEstados { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetalleEntrada> DetalleEntrada { get; set; }
-        public DetalleEntrada detalleEntrada { get; set; }
         public virtual Proveedores Proveedores { get; set; }
     }
 }

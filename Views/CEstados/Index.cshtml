@@ -3,11 +3,17 @@
 @{
     ViewBag.Title = "ESTADOS";
 }
-
 <h2>Estados</h2>
-
 <p>
-    @Html.ActionLink("Crear Nueva", "Create")
+    <div class="row">
+        <div class="input-group">
+            <div class="col-sm-12">
+                <button class="btn" title="Registrar" onclick="location.href='@Url.Action("Create", "CEstados")';return false;">
+                    <img src="~/Images/nuevo.png" alt="nuevo" style="width:24px;" />
+                </button>
+            </div>
+        </div>
+    </div>   
 </p>
 <table class="table">
     <tr>
@@ -15,18 +21,17 @@
         <th>Categoría</th>
         <th></th>
     </tr>
-
 @foreach (var item in Model) {
     <tr>
+        <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+        <td>@Html.DisplayFor(modelItem => item.Categoria)</td>
         <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categoria)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.IdEstado }) |           
-            @Html.ActionLink("Borrar", "Delete", new { id=item.IdEstado })
+            <button class="btn" title="Editar" onclick="location.href='@Url.Action("Edit", "CEstados", new { id = item.IdEstado })';return false;">
+                <img src="~/Images/editar.png" alt="editar" style="width:16px;" />
+            </button>
+            <button class="btn" title="Eliminar" onclick="location.href='@Url.Action("Delete", "CEstados", new { id = item.IdEstado })';return false;">
+                <img src="~/Images/eliminar.png" alt="eliminar" style="width:16px;" />
+            </button>           
         </td>
     </tr>
 }

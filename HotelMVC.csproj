@@ -336,11 +336,6 @@
     <Content Include="Views\Habitaciones\Details.cshtml" />
     <Content Include="Views\Habitaciones\Edit.cshtml" />
     <Content Include="Views\Habitaciones\Index.cshtml" />
-    <Content Include="Views\Transacciones\Create.cshtml" />
-    <Content Include="Views\Transacciones\Delete.cshtml" />
-    <Content Include="Views\Transacciones\Details.cshtml" />
-    <Content Include="Views\Transacciones\Edit.cshtml" />
-    <Content Include="Views\Transacciones\Index.cshtml" />
     <Content Include="Views\Administradors\Create.cshtml" />
     <Content Include="Views\Administradors\Delete.cshtml" />
     <Content Include="Views\Administradors\Details.cshtml" />
@@ -376,6 +371,11 @@
     <Content Include="Views\DetalleEntradas\Details.cshtml" />
     <Content Include="Views\DetalleEntradas\Edit.cshtml" />
     <Content Include="Views\DetalleEntradas\Index.cshtml" />
+    <Content Include="Views\Transacciones\Create.cshtml" />
+    <Content Include="Views\Transacciones\Delete.cshtml" />
+    <Content Include="Views\Transacciones\Details.cshtml" />
+    <Content Include="Views\Transacciones\Edit.cshtml" />
+    <Content Include="Views\Transacciones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

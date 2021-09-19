@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ModeloHotel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ModeloHotel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Administrador">
           <Key>
             <PropertyRef Name="IdAdministrador" />
@@ -82,7 +82,7 @@
           <Property Name="IdEntrada" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FechaHora" Type="datetime" Nullable="false" />
           <Property Name="NumeroIdentificacion" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="Total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="10" Scale="2" />
           <Property Name="IdEstado" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="Habitaciones">
@@ -149,11 +149,11 @@
             <PropertyRef Name="IdTransaccion" />
           </Key>
           <Property Name="IdTransaccion" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTipoIdentificacion" Type="varchar" MaxLength="3" Nullable="false" />
           <Property Name="NumeroIdentificacion" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="NumeroHabitacion" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="FechaHoraIngreso" Type="datetime" Nullable="false" />
+          <Property Name="FechaHoraIngreso" Type="datetime" />
           <Property Name="FechaHoraSalida" Type="datetime" Nullable="false" />
-          <Property Name="TotalDias" Type="int" Nullable="false" />
           <Property Name="NumeroPersonas" Type="int" Nullable="false" />
           <Property Name="IdEstado" Type="smallint" Nullable="false" />
           <Property Name="Total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
@@ -427,6 +427,18 @@
             </Principal>
             <Dependent Role="Transacciones">
               <PropertyRef Name="NumeroIdentificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transacciones_CTipoIdentificacion">
+          <End Role="CTipoIdentificacion" Type="Self.CTipoIdentificacion" Multiplicity="1" />
+          <End Role="Transacciones" Type="Self.Transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CTipoIdentificacion">
+              <PropertyRef Name="IdTipoIdentificacion" />
+            </Principal>
+            <Dependent Role="Transacciones">
+              <PropertyRef Name="IdTipoIdentificacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -805,6 +817,10 @@
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Transacciones" EntitySet="Transacciones" />
           </AssociationSet>
+          <AssociationSet Name="FK_Transacciones_CTipoIdentificacion" Association="Self.FK_Transacciones_CTipoIdentificacion">
+            <End Role="CTipoIdentificacion" EntitySet="CTipoIdentificacion" />
+            <End Role="Transacciones" EntitySet="Transacciones" />
+          </AssociationSet>
           <AssociationSet Name="FK_Transacciones_Habitaciones" Association="Self.FK_Transacciones_Habitaciones">
             <End Role="Habitaciones" EntitySet="Habitaciones" />
             <End Role="Transacciones" EntitySet="Transacciones" />
@@ -818,8 +834,7 @@
             <End Role="TransaccionesOrdenPago" EntitySet="TransaccionesOrdenPago" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ModeloHotel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -893,6 +908,7 @@
           <NavigationProperty Name="Administrador" Relationship="Self.FK_Administrador_CTipoIdentificacion" FromRole="CTipoIdentificacion" ToRole="Administrador" />
           <NavigationProperty Name="Clientes" Relationship="Self.FK_Clientes_CTipoIdentificacion" FromRole="CTipoIdentificacion" ToRole="Clientes" />
           <NavigationProperty Name="Proveedores" Relationship="Self.FK_Proveedores_CTipoIdentificacion" FromRole="CTipoIdentificacion" ToRole="Proveedores" />
+          <NavigationProperty Name="Transacciones" Relationship="ModeloHotel.FK_Transacciones_CTipoIdentificacion" FromRole="CTipoIdentificacion" ToRole="Transacciones" />
         </EntityType>
         <EntityType Name="DetalleEntrada">
           <Key>
@@ -924,7 +940,7 @@
           <Property Name="IdEntrada" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="NumeroIdentificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="IdEstado" Type="Int16" Nullable="false" />
           <NavigationProperty Name="CEstados" Relationship="Self.FK_Entrada_CEstados" FromRole="Entrada" ToRole="CEstados" />
           <NavigationProperty Name="DetalleEntrada" Relationship="Self.FK_DetalleEntrada_Entrada" FromRole="Entrada" ToRole="DetalleEntrada" />
@@ -1012,9 +1028,8 @@
           <Property Name="IdTransaccion" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NumeroIdentificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NumeroHabitacion" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FechaHoraIngreso" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaHoraIngreso" Type="DateTime" Precision="3" />
           <Property Name="FechaHoraSalida" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="TotalDias" Type="Int32" Nullable="false" />
           <Property Name="NumeroPersonas" Type="Int32" Nullable="false" />
           <Property Name="IdEstado" Type="Int16" Nullable="false" />
           <Property Name="Total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
@@ -1023,6 +1038,8 @@
           <NavigationProperty Name="Clientes" Relationship="Self.FK_Transacciones_Clientes" FromRole="Transacciones" ToRole="Clientes" />
           <NavigationProperty Name="Habitaciones" Relationship="Self.FK_Transacciones_Habitaciones" FromRole="Transacciones" ToRole="Habitaciones" />
           <NavigationProperty Name="TransaccionesOrdenPago" Relationship="Self.FK_TransaccionesOrdenPago_Transacciones" FromRole="Transacciones" ToRole="TransaccionesOrdenPago" />
+          <Property Name="IdTipoIdentificacion" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CTipoIdentificacion" Relationship="ModeloHotel.FK_Transacciones_CTipoIdentificacion" FromRole="Transacciones" ToRole="CTipoIdentificacion" />
         </EntityType>
         <EntityType Name="TransaccionesOrdenPago">
           <Key>
@@ -1502,7 +1519,7 @@
           </FunctionImport>
           <FunctionImport Name="SPAdministradorSelect" ReturnType="Collection(ModeloHotel.SPAdministradorSelect_Result)" />
           <FunctionImport Name="SPAdministradorSelectDocumento" ReturnType="Collection(ModeloHotel.SPAdministradorSelectDocumento_Result)">
-            <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+          <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPAdministradorUpdate">
             <Parameter Name="IdAdministrador" Mode="In" Type="Int32" />
@@ -1529,7 +1546,7 @@
           </FunctionImport>
           <FunctionImport Name="SPClienteSelect" ReturnType="Collection(ModeloHotel.SPClienteSelect_Result)" />
           <FunctionImport Name="SPClienteSelectPorDocumento" ReturnType="Collection(ModeloHotel.SPClienteSelectPorDocumento_Result)">
-            <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+          <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPClienteUpdate">
             <Parameter Name="IdCliente" Mode="In" Type="Int32" />
@@ -1539,14 +1556,14 @@
             <Parameter Name="Observaciones" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPCTipoHabitacionInsert">
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
+          <Parameter Name="Descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPCTipoIdentificacionInsert">
             <Parameter Name="IdTipoIdentificacion" Mode="In" Type="String" />
             <Parameter Name="Descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPDetalleEntradaDeletePorId">
-            <Parameter Name="IdDetalleEntrada" Mode="In" Type="Int32" />
+          <Parameter Name="IdDetalleEntrada" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPDetalleEntradaInsert">
             <Parameter Name="IdEntrada" Mode="In" Type="Int32" />
@@ -1554,7 +1571,7 @@
             <Parameter Name="Cantidad" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPDetalleOrdenPagoDeletePorId">
-            <Parameter Name="IdDetalleOrdenPago" Mode="In" Type="Int32" />
+          <Parameter Name="IdDetalleOrdenPago" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPDetalleOrdenPagoInsert">
             <Parameter Name="IdOrdenPago" Mode="In" Type="Int32" />
@@ -1569,7 +1586,7 @@
           </FunctionImport>
           <FunctionImport Name="SPEstadosAdministradorSelect" ReturnType="Collection(ModeloHotel.SPEstadosAdministradorSelect_Result)" />
           <FunctionImport Name="SPEstadosDeletePorId">
-            <Parameter Name="IdEstado" Mode="In" Type="Int16" />
+          <Parameter Name="IdEstado" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="SPEstadosHabitacionSelect" ReturnType="Collection(ModeloHotel.SPEstadosHabitacionSelect_Result)" />
           <FunctionImport Name="SPEstadosInsert">
@@ -1583,7 +1600,7 @@
             <Parameter Name="Categoria" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPHabitacionDeletePorId">
-            <Parameter Name="IdHabitacion" Mode="In" Type="Int32" />
+          <Parameter Name="IdHabitacion" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPHabitacionesInsert">
             <Parameter Name="NumeroHabitacion" Mode="In" Type="String" />
@@ -1595,7 +1612,7 @@
           </FunctionImport>
           <FunctionImport Name="SPHabitacionSelect" ReturnType="Collection(ModeloHotel.SPHabitacionSelect_Result)" />
           <FunctionImport Name="SPHabitacionSelectPorHabitacion" ReturnType="Collection(ModeloHotel.SPHabitacionSelectPorHabitacion_Result)">
-            <Parameter Name="NumeroHabitacion" Mode="In" Type="String" />
+          <Parameter Name="NumeroHabitacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPHabitacionUpdate">
             <Parameter Name="NumeroHabitacion" Mode="In" Type="String" />
@@ -1615,7 +1632,7 @@
             <Parameter Name="Descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPProductoSelectPorCodigo" ReturnType="Collection(ModeloHotel.SPProductoSelectPorCodigo_Result)">
-            <Parameter Name="Codigo" Mode="In" Type="String" />
+          <Parameter Name="Codigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPProductosSelect" ReturnType="Collection(ModeloHotel.SPProductosSelect_Result)" />
           <FunctionImport Name="SPProductosUpdate">
@@ -1630,7 +1647,7 @@
             <Parameter Name="Observaciones" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPProveedoresDeletePorId">
-            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+          <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPProveedoresFind" ReturnType="Collection(ModeloHotel.SPProveedoresFind_Result)">
             <Parameter Name="RazonSocial" Mode="In" Type="String" />
@@ -1648,7 +1665,7 @@
           </FunctionImport>
           <FunctionImport Name="SPProveedoresSelect" ReturnType="Collection(ModeloHotel.SPProveedoresSelect_Result)" />
           <FunctionImport Name="SPProveedoresSelectPorDocumento" ReturnType="Collection(ModeloHotel.SPProveedoresSelectPorDocumento_Result)">
-            <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+          <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPProveedoresUpdate">
             <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
@@ -1659,11 +1676,11 @@
             <Parameter Name="Observaciones" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SPTipoHabitacionDeletePorId">
-            <Parameter Name="IdTipoHabitacion" Mode="In" Type="Int32" />
+          <Parameter Name="IdTipoHabitacion" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPTipoHabitacionSelect" ReturnType="Collection(ModeloHotel.SPTipoHabitacionSelect_Result)" />
           <FunctionImport Name="SPTipoIdentificacionDeletePorId">
-            <Parameter Name="IdTipoIdentificacion" Mode="In" Type="Int32" />
+          <Parameter Name="IdTipoIdentificacion" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPTipoIdentificacionSelect" ReturnType="Collection(ModeloHotel.SPTipoIdentificacionSelect_Result)" />
           <FunctionImport Name="SPTransaccionesInsert">
@@ -1684,6 +1701,10 @@
             <Parameter Name="User" Mode="In" Type="String" />
             <Parameter Name="Pass" Mode="In" Type="String" />
           </FunctionImport>
+          <AssociationSet Name="FK_Transacciones_CTipoIdentificacion" Association="ModeloHotel.FK_Transacciones_CTipoIdentificacion">
+            <End Role="CTipoIdentificacion" EntitySet="CTipoIdentificacion" />
+            <End Role="Transacciones" EntitySet="Transacciones" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1856,6 +1877,18 @@
           <Property Type="String" Name="IdTipoIdentificacion" Nullable="false" MaxLength="3" />
           <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="32" />
         </ComplexType>
+        <Association Name="FK_Transacciones_CTipoIdentificacion">
+          <End Type="ModeloHotel.CTipoIdentificacion" Role="CTipoIdentificacion" Multiplicity="1" />
+          <End Type="ModeloHotel.Transacciones" Role="Transacciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CTipoIdentificacion">
+              <PropertyRef Name="IdTipoIdentificacion" />
+            </Principal>
+            <Dependent Role="Transacciones">
+              <PropertyRef Name="IdTipoIdentificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2017,12 +2050,12 @@
           <EntitySetMapping Name="Transacciones">
             <EntityTypeMapping TypeName="ModeloHotel.Transacciones">
               <MappingFragment StoreEntitySet="Transacciones">
+                <ScalarProperty Name="IdTipoIdentificacion" ColumnName="IdTipoIdentificacion" />
                 <ScalarProperty Name="IdTransaccion" ColumnName="IdTransaccion" />
                 <ScalarProperty Name="NumeroIdentificacion" ColumnName="NumeroIdentificacion" />
                 <ScalarProperty Name="NumeroHabitacion" ColumnName="NumeroHabitacion" />
                 <ScalarProperty Name="FechaHoraIngreso" ColumnName="FechaHoraIngreso" />
                 <ScalarProperty Name="FechaHoraSalida" ColumnName="FechaHoraSalida" />
-                <ScalarProperty Name="TotalDias" ColumnName="TotalDias" />
                 <ScalarProperty Name="NumeroPersonas" ColumnName="NumeroPersonas" />
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
                 <ScalarProperty Name="Total" ColumnName="Total" />

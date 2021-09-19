@@ -4,77 +4,38 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Borrar Habitacion</h2>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Habitaciones</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.IdHabitacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdHabitacion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tarifa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tarifa)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumeroPersonas)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumeroPersonas)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Observaciones)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Observaciones)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CEstados.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CEstados.Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CEstados1.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CEstados1.Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CTipoHabitacion.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CTipoHabitacion.Descripcion)
-        </dd>
+        <dt>@Html.DisplayNameFor(model => model.IdHabitacion)</dt>
+        <dd>@Html.DisplayFor(model => model.IdHabitacion)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Tarifa)</dt>
+        <dd>@Html.DisplayFor(model => model.Tarifa)</dd>
+        <dt>@Html.DisplayNameFor(model => model.NumeroPersonas)</dt>
+        <dd>@Html.DisplayFor(model => model.NumeroPersonas)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Observaciones)</dt>
+        <dd>@Html.DisplayFor(model => model.Observaciones)</dd>
+        <dt>@Html.DisplayNameFor(model => model.CEstados.Descripcion)</dt>
+        <dd>@Html.DisplayFor(model => model.CEstados.Descripcion)</dd>
+        <dt>@Html.DisplayNameFor(model => model.CEstados1.Descripcion)</dt>
+        <dd>@Html.DisplayFor(model => model.CEstados1.Descripcion)</dd>
+        <dt>@Html.DisplayNameFor(model => model.CTipoHabitacion.Descripcion)</dt>
+        <dd>@Html.DisplayFor(model => model.CTipoHabitacion.Descripcion)</dd>
 
     </dl>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+<div class="form-actions no-color">
+    <button class="btn" title="Regresar" onclick="location.href='@Url.Action("Index", "Habitaciones")';return false;">
+        <img src="~/Images/atras.png" alt="atras" style="width:24px;" />
+    </button>
+    <button class="btn" title="Eliminar" type="submit">
+        <img src="~/Images/eliminar.png" alt="eliminar" style="width:24px;" />
+    </button>
+ </div>
     }
 </div>
